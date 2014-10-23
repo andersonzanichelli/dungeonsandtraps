@@ -7,7 +7,7 @@ public enum Dado {
 		public Integer lancamento() {
 			// TODO Auto-generated method stub
 			// implementar o método randomico que devolve de 1 a 4
-			return null;
+			return 0;
 		}
 	}
 	, D6("d6") {

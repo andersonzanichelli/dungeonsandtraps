@@ -1,5 +1,7 @@
 package com.dat.model;
 
+import com.dat.enums.Dado;
+
 public abstract class Personagem {
 
 	private String nome;

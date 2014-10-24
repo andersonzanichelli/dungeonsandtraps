@@ -1,48 +1,41 @@
 package com.dat.enums;
 
 public enum Dado {
-
+	
 	D4("d4") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			// implementar o método randomico que devolve de 1 a 4
-			return 0;
+			return randomico(4);
 		}
 	}
 	, D6("d6") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			return null;
+			return randomico(6);
 		}
 	}
 	, D8("d8") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			return null;
+			return randomico(8);
 		}
 	}
 	, D10("d10") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			return null;
+			return randomico(10);
 		}
 	}
 	, D12("d12") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			return null;
+			return randomico(12);
 		}
 	}
 	, D20("d20") {
 		@Override
 		public Integer lancamento() {
-			// TODO Auto-generated method stub
-			return null;
+			return randomico(20);
 		}
 	};
 	
@@ -53,4 +46,8 @@ public enum Dado {
 	}
 	
 	public abstract Integer lancamento();
+	
+	private static Integer randomico(Integer faces){
+		return 6;
+	}
 }

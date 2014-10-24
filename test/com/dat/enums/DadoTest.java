@@ -10,11 +10,18 @@ import org.junit.Test;
 
 public class DadoTest {
 
+	List<Integer> rangeD4 = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
+	List<Integer> rangeD6 = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5,6));
+	
 	@Test
 	public void d4test() {
-		Integer lancamento = Dado.D4.lancamento();
-		List<Integer> range = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
-		assertTrue(range.contains(lancamento));
+		Integer resultadoLancamento = Dado.D4.lancamento();
+		assertTrue(rangeD4.contains(resultadoLancamento));
 	}
-
+	
+	@Test
+	public void d6test() {
+		Integer resultadoLancamento = Dado.D6.lancamento();
+		assertTrue(rangeD6.contains(resultadoLancamento));
+	}
 }

@@ -1,53 +1,32 @@
 package com.dat.enums;
 
+import java.util.Random;
+
 public enum Dado {
 	
-	D4("d4") {
-		@Override
-		public Integer lancamento() {
-			return randomico(4);
-		}
-	}
-	, D6("d6") {
-		@Override
-		public Integer lancamento() {
-			return randomico(6);
-		}
-	}
-	, D8("d8") {
-		@Override
-		public Integer lancamento() {
-			return randomico(8);
-		}
-	}
-	, D10("d10") {
-		@Override
-		public Integer lancamento() {
-			return randomico(10);
-		}
-	}
-	, D12("d12") {
-		@Override
-		public Integer lancamento() {
-			return randomico(12);
-		}
-	}
-	, D20("d20") {
-		@Override
-		public Integer lancamento() {
-			return randomico(20);
-		}
-	};
+	  D4("d4", 4)
+	, D6("d6", 6)
+	, D8("d8", 8)
+	, D10("d10", 10)
+	, D12("d12", 12)
+	, D20("d20", 20);
 	
 	String dado;
+	Integer face;
 	
-	Dado(String dado) {
+	Dado(String dado, Integer face) {
 		this.dado = dado;
+		this.face = face;
 	}
 	
-	public abstract Integer lancamento();
-	
-	private static Integer randomico(Integer faces){
-		return 6;
+	public Integer lancamento(){
+		
+		Random random = new Random();
+		
+		Integer faceDado = random.nextInt(face) + 1;
+		
+		return faceDado;
 	}
+	
+	
 }

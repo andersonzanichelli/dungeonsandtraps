@@ -19,7 +19,7 @@ public enum Dado {
 		this.face = face;
 	}
 	
-	public Integer lancamento(){
+	public Integer lancar(){
 		
 		Random random = new Random();
 		

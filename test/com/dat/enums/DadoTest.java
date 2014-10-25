@@ -1,11 +1,10 @@
 package com.dat.enums;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 
@@ -21,37 +20,37 @@ public class DadoTest {
 	
 	@Test
 	public void d4test() {
-		Integer resultadoLancamento = Dado.D4.lancamento();
+		Integer resultadoLancamento = Dado.D4.lancar();
 		assertTrue(rangeD4.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d6test() {
-		Integer resultadoLancamento = Dado.D6.lancamento();
+		Integer resultadoLancamento = Dado.D6.lancar();
 		assertTrue(rangeD6.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d8test() {
-		Integer resultadoLancamento = Dado.D8.lancamento();
+		Integer resultadoLancamento = Dado.D8.lancar();
 		assertTrue(rangeD8.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d10test() {
-		Integer resultadoLancamento = Dado.D10.lancamento();
+		Integer resultadoLancamento = Dado.D10.lancar();
 		assertTrue(rangeD10.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d12test() {
-		Integer resultadoLancamento = Dado.D12.lancamento();
+		Integer resultadoLancamento = Dado.D12.lancar();
 		assertTrue(rangeD12.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d20test() {
-		Integer resultadoLancamento = Dado.D20.lancamento();
+		Integer resultadoLancamento = Dado.D20.lancar();
 		assertTrue(rangeD20.contains(resultadoLancamento));
 		System.out.println(resultadoLancamento);
 	}

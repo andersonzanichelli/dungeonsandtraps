@@ -83,6 +83,42 @@
 		</div>                                                                               
 	</div>
 	
+	<div id='intro'>
+		<div class='panel panel-default'>                                                        
+	 		<div class='panel-heading'>                                                            
+				<h3 class='panel-title'>Introdução!</h3>                                        
+			</div>                                                                             
+			<div class='panel-body'>                                                           
+				Bravos heróis!
+				<br/>
+				Uma relíquia mágica, do rei, foi roubada!
+				<br/>
+				Ela foi dada ao rei como um presente dos homens do norte, em agradecimento às forças de guerra que o rei havia enviado para lá.
+				<br/>
+				O rei pretende pagar uma boa quantia em ouro para vocês se trouxerem o presente que foi roubado.
+				<br/>
+				Um dos batedores do castelo percebeu uma movimentação de orcs na região das colinas, ali próximo existe uma mina abandonada.
+			</div>                                                                             
+			<div class='btn-group'>                                                            
+				<input type='button' id='continuarIntro' class='btn btn-default' value='Continuar' />
+			</div>                                                                             
+		</div>                                                                               
+	</div>
+	
+	<div id='mapa'>
+		<div class='panel panel-default'>                                                        
+	 		<div class='panel-heading'>                                                            
+				<h3 class='panel-title'>Introdução!</h3>                                        
+			</div>                                                                             
+			<div class='panel-body'>                                                           
+				mapa do jogo
+			</div>                                                                             
+			<div class='btn-group'>                                                            
+				<input type='button' id='continuarIntro' class='btn btn-default' value='Continuar' />
+			</div>                                                                             
+		</div>                                                                               
+	</div>
+	
 	<div id="palco">
     </div>
 	

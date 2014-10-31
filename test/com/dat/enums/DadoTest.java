@@ -20,37 +20,42 @@ public class DadoTest {
 	@Test
 	public void d4test() {
 		Integer resultadoLancamento = Dado.D4.lancar();
+		System.out.println(resultadoLancamento);
 		assertTrue(rangeD4.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d6test() {
 		Integer resultadoLancamento = Dado.D6.lancar();
+		System.out.println(resultadoLancamento);
 		assertTrue(rangeD6.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d8test() {
 		Integer resultadoLancamento = Dado.D8.lancar();
+		System.out.println(resultadoLancamento);
 		assertTrue(rangeD8.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d10test() {
 		Integer resultadoLancamento = Dado.D10.lancar();
+		System.out.println(resultadoLancamento);
 		assertTrue(rangeD10.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d12test() {
 		Integer resultadoLancamento = Dado.D12.lancar();
+		System.out.println(resultadoLancamento);
 		assertTrue(rangeD12.contains(resultadoLancamento));
 	}
 	
 	@Test
 	public void d20test() {
 		Integer resultadoLancamento = Dado.D20.lancar();
-		assertTrue(rangeD20.contains(resultadoLancamento));
 		System.out.println(resultadoLancamento);
+		assertTrue(rangeD20.contains(resultadoLancamento));
 	}
 }

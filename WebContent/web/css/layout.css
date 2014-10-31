@@ -2,7 +2,7 @@ body {
 	background-image: url('../img/background.png');
 }
 
-#bemvindo {
+#bemvindo, #intro, #mapa {
 	padding-top: 80px;
 	margin: auto;
 	width: 50%;

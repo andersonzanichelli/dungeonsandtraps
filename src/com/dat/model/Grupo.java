@@ -14,5 +14,8 @@ public class Grupo {
 		grupo.put(p2.getClasse(), p2);
 		grupo.put(p3.getClasse(), p3);
 	}
-	
+
+	public Map<ClassePersonagem, Protagonista> getGrupo() {
+		return grupo;
+	}
 }

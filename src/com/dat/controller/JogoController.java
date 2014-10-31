@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dat.enums.ClassePersonagem;
 import com.dat.model.Grupo;
 import com.dat.service.JogoService;
 
@@ -23,7 +24,11 @@ public class JogoController extends HttpServlet{
 		Map<String, String[]> req = request.getParameterMap();
 		
 		if(acao.equals("grupo")) {
-			Grupo grupo = JogoService.montarGrupo(req);
+			JogoService.montarGrupo(req);
+		}
+		
+		for(ClassePersonagem classe : JogoService.grupo.getGrupo().keySet()) {
+			System.out.println("Classe: " + classe + " Personagem: " + JogoService.grupo.getGrupo().get(classe));
 		}
 		
 		response.setContentType("text/html");

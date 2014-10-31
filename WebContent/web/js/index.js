@@ -18,6 +18,11 @@ index.componentes = function(){
 	index.disponivel = $('#disponivel');
 	
 	index.slots = $('.slot');
+	
+	index.intro = $('#intro');
+	index.btnContinuarIntro = $('#continuarIntro');
+	
+	index.mapa = $('#mapa');
 };
 
 index.init = function() {
@@ -25,6 +30,8 @@ index.init = function() {
 	
 	index.bemvindo.hide();
 	index.personagens.hide();
+	index.intro.hide();
+	index.mapa.hide();
 	
 	index.btnNovo.on('click', index.novoJogo);
 	index.btnInfo.on('click', index.informacao);
@@ -57,6 +64,11 @@ index.init = function() {
 	index.slots.each(function (a, slot) {
 		$(slot).attr('disabled', 'disabled');
 		$(slot).on('click', index.removeEscolhido);
+	});
+	
+	index.btnContinuarIntro.on('click', function(){
+		index.intro.hide();
+		index.entrarNoDungeon();
 	});
 };
 
@@ -101,7 +113,7 @@ index.personagensEscolhidas = function() {
 		url: 'jogoController',
 		data: data,
 		type: 'post',
-		success: index.escolherTime
+		success: index.iniciarAventura
 	});
 	index.close("personagens");
 }
@@ -154,6 +166,14 @@ index.removeEscolhido = function() {
 		$(this).html('');
 		$(this).attr('disabled', 'disabled');
 	}
+}
+
+index.iniciarAventura = function() {
+	index.intro.show();
+}
+
+index.entrarNoDungeon = function() {
+	index.mapa.show();
 }
 
 $( document ).ready(function(){

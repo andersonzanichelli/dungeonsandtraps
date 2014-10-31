@@ -1,10 +1,10 @@
 package com.dat.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.dat.enums.ClassePersonagem;
 import com.dat.factory.ProtagonistaFactory;
+import com.dat.json.JSONObject;
 import com.dat.model.Grupo;
 import com.dat.model.Protagonista;
 
@@ -12,24 +12,20 @@ public class JogoService {
 
 	public static Grupo montarGrupo(Map<String, String[]> req) {
 		
-		Map<String, Protagonista> classes = new HashMap<String, Protagonista>();
-		Map<String, String> jsons = new HashMap<String, String>();
+		ClassePersonagem classe0 = ClassePersonagem.valueOf(req.get("classe0")[0].toUpperCase());
+		Protagonista protagonista0 = ProtagonistaFactory.buildProtagonista(classe0, buildFromJson(req.get("json0")[0]));
 		
-		for(String key : req.keySet()) {
-			if(key.startsWith("classe")) {
-				ClassePersonagem classe = ClassePersonagem.valueOf(req.get(key)[0].toUpperCase());
-				Protagonista protagonista = ProtagonistaFactory.buildProtagonista(classe);
-				classes.put(key, protagonista);
-			} else if(key.startsWith("json")) {
-				jsons.put(key, req.get(key)[0]);
-			}
-		}
+		ClassePersonagem classe1 = ClassePersonagem.valueOf(req.get("classe1")[0].toUpperCase());
+		Protagonista protagonista1 = ProtagonistaFactory.buildProtagonista(classe1, buildFromJson(req.get("json1")[0]));
 		
-		classes.get("classe0").setJson(jsons.get("json0"));
-		classes.get("classe1").setJson(jsons.get("json1"));
-		classes.get("classe2").setJson(jsons.get("json2"));
+		ClassePersonagem classe2 = ClassePersonagem.valueOf(req.get("classe2")[0].toUpperCase());
+		Protagonista protagonista2 = ProtagonistaFactory.buildProtagonista(classe2, buildFromJson(req.get("json2")[0]));
 		
-		return new Grupo(classes.get("classe0"), classes.get("classe1"), classes.get("classe2"));
+		return new Grupo(protagonista0, protagonista1, protagonista2);
+	}
+	
+	private static JSONObject buildFromJson(String json) {
+		return new JSONObject(json);
 	}
 
 }

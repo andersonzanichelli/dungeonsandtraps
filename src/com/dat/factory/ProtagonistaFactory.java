@@ -1,6 +1,7 @@
 package com.dat.factory;
 
 import com.dat.enums.ClassePersonagem;
+import com.dat.json.JSONObject;
 import com.dat.model.Anao;
 import com.dat.model.Barbaro;
 import com.dat.model.Batedor;
@@ -11,32 +12,32 @@ import com.dat.model.Sacerdotisa;
 
 public class ProtagonistaFactory {
 	
-	public static Protagonista buildProtagonista(ClassePersonagem classe) {
+	public static Protagonista buildProtagonista(ClassePersonagem classe, JSONObject jsonObject) {
 		Protagonista protagonista = null;
 		
 		switch(classe) {
 			case ANAO:
-				protagonista = new Anao();
+				protagonista = new Anao(jsonObject);
 	            break;
 	        
 			case BARBARO:
-				protagonista = new Barbaro();
+				protagonista = new Barbaro(jsonObject);
 				break;
 				
 			case BATEDOR:
-				protagonista = new Batedor();
+				protagonista = new Batedor(jsonObject);
 				break;
 	 
 			case GUERREIRA:
-				protagonista = new Guerreira();
+				protagonista = new Guerreira(jsonObject);
 				break;
 				
 			case MAGO:
-				protagonista = new Mago();
+				protagonista = new Mago(jsonObject);
 				break;
 				
 			case SACERDOTISA:
-				protagonista = new Sacerdotisa();
+				protagonista = new Sacerdotisa(jsonObject);
 				break;
 				
 	        default:

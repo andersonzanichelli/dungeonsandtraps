@@ -2,22 +2,22 @@ var jogadores = {};
 
 jogadores.mago = '{'
 	+'  "classe": "mago"'
-	+', "FOR": 10'
-	+', "DES": 12'
-	+', "CON": 13'
-	+', "INT": 18'
-	+', "SAB": 15'
-	+', "CAR": 13'
-	+', "CA":  12'
-	+', "INI":  5'
-	+', "MOV": 10'
-	+', "PV":  18'
+	+', "forca": 10'
+	+', "destreza": 12'
+	+', "constituicao": 13'
+	+', "inteligencia": 18'
+	+', "sabedoria": 15'
+	+', "carisma": 13'
+	+', "ca":  12'
+	+', "iniciativa":  5'
+	+', "deslocamento": 10'
+	+', "pv":  18'
 	+', "fortitude": 2'
 	+', "reflexos":  2'
 	+', "vontade":   8'
 	+', "ataque":"d6"'
 	+', "distancia": 0'
-	+', "magias": [{"flexa_acida": 3}'
+	+', "magia": [{"flexa_acida": 3}'
 	+'			,{"golpe_raio": 2}'
 	+'			,{"maos_ardentes": 2}'
 	+'			,{"escudo_arcano": 2}]'
@@ -25,102 +25,98 @@ jogadores.mago = '{'
 
 jogadores.anao = '{'
 	+'"classe": "anao"'
-	+', "FOR": 15'
-	+', "DES": 12'
-	+', "CON": 20'
-	+', "INT": 11'
-	+', "SAB": 11'
-	+', "CAR": 10'
-	+', "CA":  16'
-	+', "INI":  1'
-	+', "MOV":  6'
-	+', "PV":  68'
+	+', "forca": 15'
+	+', "destreza": 12'
+	+', "constituicao": 20'
+	+', "inteligencia": 11'
+	+', "sabedoria": 11'
+	+', "carisma": 10'
+	+', "ca":  16'
+	+', "iniciativa":  1'
+	+', "deslocamento":  6'
+	+', "pv":  68'
 	+', "fortitude": 11'
 	+', "reflexos":   2'
 	+', "vontade":    1'
 	+', "ataque": "d10"'
 	+', "distancia": 0'
-	+', "magias": []'
 	+', "img": "img/anao.png"}';
 
 jogadores.barbaro = '{'
 	+'"classe": "barbaro"'
-	+', "FOR": 19'
-	+', "DES": 12'
-	+', "CON": 16'
-	+', "INT": 10'
-	+', "SAB": 10'
-	+', "CAR": 14'
-	+', "CA":  16'
-	+', "INI":  1'
-	+', "MOV": 10'
-	+', "PV":  60'
+	+', "forca": 19'
+	+', "destreza": 12'
+	+', "constituicao": 16'
+	+', "inteligencia": 10'
+	+', "sabedoria": 10'
+	+', "carisma": 14'
+	+', "ca":  16'
+	+', "iniciativa":  1'
+	+', "deslocamento": 10'
+	+', "pv":  60'
 	+', "fortitude": 9'
 	+', "reflexos": 2'
 	+', "vontade": 1'
 	+', "ataque": "d12"'
 	+', "distancia": 0'
-	+', "magias": []'
 	+', "img": "img/barbaro.png"}';
 
 jogadores.guerreira = '{'
 	+'"classe": "guerreira"'
-	+', "FOR": 14'
-	+', "DES": 12'
-	+', "CON": 16'
-	+', "INT": 16'
-	+', "SAB": 12'
-	+', "CAR": 14'
-	+', "CA":  21'
-	+', "INI":  1'
-	+', "MOV":  6'
-	+', "PV":  50'
+	+', "forca": 14'
+	+', "destreza": 12'
+	+', "constituicao": 16'
+	+', "inteligencia": 16'
+	+', "sabedoria": 12'
+	+', "carisma": 14'
+	+', "ca":  21'
+	+', "iniciativa":  1'
+	+', "deslocamento":  6'
+	+', "pv":  50'
 	+', "fortitude": 11'
 	+', "reflexos": 1'
 	+', "vontade": 1'
 	+', "ataque": "d8"'
 	+', "distancia": 3'
-	+', "magias": []'
 	+', "img": "img/guerreira.png"}';
 
 jogadores.batedor = '{'
 	+'"classe": "batedor"'
-	+', "FOR": 15'
-	+', "DES": 16'
-	+', "CON": 14'
-	+', "INT": 13'
-	+', "SAB": 15'
-	+', "CAR": 14'
-	+', "CA":  16'
-	+', "INI":  3'
-	+', "MOV": 10'
-	+', "PV":  40'
+	+', "forca": 15'
+	+', "destreza": 16'
+	+', "constituicao": 14'
+	+', "inteligencia": 13'
+	+', "sabedoria": 15'
+	+', "carisma": 14'
+	+', "ca":  16'
+	+', "iniciativa":  3'
+	+', "deslocamento": 10'
+	+', "pv":  40'
 	+', "fortitude": 5'
 	+', "reflexos": 9'
 	+', "vontade": 3'
 	+', "ataque": "d8"'
 	+', "distancia": 15'
-	+', "magias": []'
 	+', "img": "img/batedor.png"}';
 
 jogadores.sacerdotisa = '{'
 	+'"classe": "sacerdotisa"'
-	+', "FOR": 10'
-	+', "DES": 16'
-	+', "CON": 12'
-	+', "INT": 13'
-	+', "SAB": 19'
-	+', "CAR": 14'
-	+', "CA":  19'
-	+', "INI":  3'
-	+', "MOV": 10'
-	+', "PV":  30'
+	+', "forca": 10'
+	+', "destreza": 16'
+	+', "constituicao": 12'
+	+', "inteligencia": 13'
+	+', "sabedoria": 19'
+	+', "carisma": 14'
+	+', "ca":  19'
+	+', "iniciativa":  3'
+	+', "deslocamento": 10'
+	+', "pv":  30'
 	+', "fortitude": 5'
 	+', "reflexos": 5'
 	+', "vontade": 8'
 	+', "ataque": "d6"'
 	+', "distancia": 0'
-	+', "magias": [{"curar_feridas": 3}'
+	+', "magia": [{"curar_feridas": 3}'
 	+'			,{"curar_area": 3}'
 	+'			,{"aura_protecao": 2}'
 	+'			,{"escudo_fe": 2}]'
@@ -128,23 +124,23 @@ jogadores.sacerdotisa = '{'
 
 /*
 jogadores.mago = {"classe": "mago"
-	, "FOR": 10
-	, "DES": 12
-	, "CON": 13
-	, "INT": 18
-	, "SAB": 15
-	, "CAR": 13
-	, "CA": 12
-	, "INI": 5
-	, "MOV": 10
-	, "PV": 18
+	, "forca": 10
+	, "destreza": 12
+	, "constituicao": 13
+	, "inteligencia": 18
+	, "sabedoria": 15
+	, "carisma": 13
+	, "ca": 12
+	, "iniciativa": 5
+	, "deslocamento": 10
+	, "pv": 18
 	, "fortitude": 2
 	, "reflexos": 2
 	, "vontade": 8
 	, "ataque": [{"mao": {"bonus": 2, "dano": "1d3", "critico": 20}}
     			,{"punhal": {"bonus": 2, "dano": "1d4", "critico": 19}}
     			,{"cajado": {"bonus": 3, "dano": "1d6", "critico": 20}}]
-	, "magias": [{"flexa_acida": 2}
+	, "magia": [{"flexa_acida": 2}
 				,{"golpe_raio": 1}
 				,{"maos_ardentes": 2}
 				,{"escudo_arcano": 2}]
@@ -152,16 +148,16 @@ jogadores.mago = {"classe": "mago"
 };
 
 jogadores.anao = {"classe": "anao"
-	, "FOR": 15
-	, "DES": 12
-	, "CON": 20
-	, "INT": 11
-	, "SAB": 11
-	, "CAR": 10
-	, "CA": 16
-	, "INI": 1
-	, "MOV": 6
-	, "PV": 68
+	, "forca": 15
+	, "destreza": 12
+	, "constituicao": 20
+	, "inteligencia": 11
+	, "sabedoria": 11
+	, "carisma": 10
+	, "ca": 16
+	, "iniciativa": 1
+	, "deslocamento": 6
+	, "pv": 68
 	, "fortitude": 11
 	, "reflexos": 2
 	, "vontade": 1
@@ -169,21 +165,21 @@ jogadores.anao = {"classe": "anao"
 	            ,{"martelo": {"bonus": 8, "dano": "1d10", "critico": 20}}
 	            ,{"picareta": {"bonus": 7, "dano": "1d4", "critico": 20}}
 	            ,{"besta": {"bonus": 6, "dano": "1d10", "critico": 19, "flexas": 15}}]
-	, "magias": []
+	, "magia": []
 	, "img": "img/anao.png"
 };
 
 jogadores.barbaro = {"classe": "barbaro"
-	, "FOR": 19
-	, "DES": 12
-	, "CON": 16
-	, "INT": 10
-	, "SAB": 10
-	, "CAR": 14
-	, "CA": 16
-	, "INI": 1
-	, "MOV": 10
-	, "PV": 60
+	, "forca": 19
+	, "destreza": 12
+	, "constituicao": 16
+	, "inteligencia": 10
+	, "sabedoria": 10
+	, "carisma": 14
+	, "ca": 16
+	, "iniciativa": 1
+	, "deslocamento": 10
+	, "pv": 60
 	, "fortitude": 9
 	, "reflexos": 2
 	, "vontade": 1
@@ -191,21 +187,21 @@ jogadores.barbaro = {"classe": "barbaro"
 	            ,{"machado": {"bonus": 10, "dano": "1d12", "critico": 20}}
 	            ,{"mace": {"bonus": 9, "dano": "1d6", "critico": 20}}
 	            ,{"adaga": {"bonus": 9, "dano": "1d4", "critico": 19}}]
-	, "magias": []
+	, "magia": []
 	, "img": "img/barbaro.png"
 };
 
 jogadores.guerreira = {"classe": "guerreira"
-	, "FOR": 14
-	, "DES": 12
-	, "CON": 16
-	, "INT": 16
-	, "SAB": 12
-	, "CAR": 14
-	, "CA": 21
-	, "INI": 1
-	, "MOV": 6
-	, "PV": 50
+	, "forca": 14
+	, "destreza": 12
+	, "constituicao": 16
+	, "inteligencia": 16
+	, "sabedoria": 12
+	, "carisma": 14
+	, "ca": 21
+	, "iniciativa": 1
+	, "deslocamento": 6
+	, "pv": 50
 	, "fortitude": 11
 	, "reflexos": 1
 	, "vontade": 1
@@ -213,21 +209,21 @@ jogadores.guerreira = {"classe": "guerreira"
 	            ,{"espada_longa": {"bonus": 8, "dano": "1d8", "critico": 19}}
 	            ,{"lanca": {"bonus": 8, "dano": "1d8", "critico": 20}}
 	            ,{"espada": {"bonus": 7, "dano": "1d6", "critico": 19}}]
-	, "magias": []
+	, "magia": []
 	, "img": "img/guerreira.png"
 };
 
 jogadores.batedor = {"classe": "batedor"
-	, "FOR": 15
-	, "DES": 16
-	, "CON": 14
-	, "INT": 13
-	, "SAB": 15
-	, "CAR": 14
-	, "CA": 16
-	, "INI": 3
-	, "MOV": 10
-	, "PV": 40
+	, "forca": 15
+	, "destreza": 16
+	, "constituicao": 14
+	, "inteligencia": 13
+	, "sabedoria": 15
+	, "carisma": 14
+	, "ca": 16
+	, "iniciativa": 3
+	, "deslocamento": 10
+	, "pv": 40
 	, "fortitude": 5
 	, "reflexos": 9
 	, "vontade": 3
@@ -235,28 +231,28 @@ jogadores.batedor = {"classe": "batedor"
 	            ,{"espada_longa": {"bonus": 7, "dano": "1d8", "critico": 19}}
 	            ,{"arco_longo": {"bonus": 7, "dano": "1d8", "critico": 20, "flexas": 15}}
 	            ,{"espada": {"bonus": 7, "dano": "1d6", "critico": 19}}]
-	, "magias": []
+	, "magia": []
 	, "img": "img/batedor.png"
 };
 
 jogadores.sacerdotisa = {"classe": "sacerdotisa"
-	, "FOR": 10
-	, "DES": 16
-	, "CON": 12
-	, "INT": 13
-	, "SAB": 19
-	, "CAR": 14
-	, "CA": 19
-	, "INI": 3
-	, "MOV": 10
-	, "PV": 30
+	, "forca": 10
+	, "destreza": 16
+	, "constituicao": 12
+	, "inteligencia": 13
+	, "sabedoria": 19
+	, "carisma": 14
+	, "ca": 19
+	, "iniciativa": 3
+	, "deslocamento": 10
+	, "pv": 30
 	, "fortitude": 5
 	, "reflexos": 5
 	, "vontade": 8
 	, "ataque": [{"mao": {"bonus": 3, "dano": "1d3", "critico": 20}}
 	            ,{"cajado": {"bonus": 3, "dano": "1d6", "critico": 20}}
 	            ,{"punhal": {"bonus": 3, "dano": "1d4", "critico": 19}}]
-	, "magias": []
+	, "magia": []
 	, "img": "img/sacerdotisa.png"
 };
 */

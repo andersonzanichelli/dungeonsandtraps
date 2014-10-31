@@ -2,10 +2,12 @@ package com.dat.interfaces;
 
 import java.util.List;
 
+import com.dat.model.Magia;
+
 public interface Conjurador {
 	
-	public Integer lancarMagia(String magia);
+	public Integer lancarMagia(Magia magia);
 	
-	public List<String> getMagias();
-	public void setMagias(List<String> magias);
+	public List<Magia> getMagias();
+	public void setMagias(List<Magia> magias);
 }

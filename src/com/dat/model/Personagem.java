@@ -4,25 +4,26 @@ import com.dat.enums.Dado;
 
 public abstract class Personagem {
 
-	private String nome;
+	protected String nome;
 	
-	private Integer forca;
-	private Integer destreza;
-	private Integer constituicao;
-	private Integer inteligencia;
-	private Integer sabedoria;
-	private Integer carisma;
+	protected Integer forca;
+	protected Integer destreza;
+	protected Integer constituicao;
+	protected Integer inteligencia;
+	protected Integer sabedoria;
+	protected Integer carisma;
 	
-	private Integer pv;
-	private Integer ca;
+	protected Integer pv;
+	protected Integer ca;
 	
-	private Integer deslocamento;
-	private Integer iniciativa;
+	protected Integer deslocamento;
+	protected Integer iniciativa;
 	
-	private Integer fortitude;
-	private Integer reflexos;
-	private Integer vontade;
+	protected Integer fortitude;
+	protected Integer reflexos;
+	protected Integer vontade;
 	
-	private Dado ataque;
-	private Integer distancia;
+	protected Dado ataque;
+	protected Integer distancia;
+	protected String img;
 }

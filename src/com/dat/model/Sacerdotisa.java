@@ -5,27 +5,31 @@ import java.util.List;
 
 import com.dat.enums.ClassePersonagem;
 import com.dat.interfaces.Conjurador;
+import com.dat.json.JSONArray;
+import com.dat.json.JSONObject;
 
 public class Sacerdotisa extends Protagonista implements Conjurador {
 
-	List<String> magias = new ArrayList<String>();
+	List<Magia> magias = new ArrayList<Magia>();
 	
-	public Sacerdotisa() {
-		super(ClassePersonagem.SACERDOTISA);
+	public Sacerdotisa(JSONObject jsonObject) {
+		super(ClassePersonagem.SACERDOTISA, jsonObject);
+		JSONArray jmagias = (JSONArray) jsonObject.get("magia");
+		magias = Magia.jsonToMagia(jmagias);
 	}
 
 	@Override
-	public Integer lancarMagia(String magia) {
+	public Integer lancarMagia(Magia magia) {
 		return 0;
 	}
 
 	@Override
-	public List<String> getMagias() {
+	public List<Magia> getMagias() {
 		return magias;
 	}
 
 	@Override
-	public void setMagias(List<String> magias) {
+	public void setMagias(List<Magia> magias) {
 		this.magias = magias;
 	}
 	

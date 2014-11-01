@@ -108,10 +108,10 @@
 	<div id='mapa'>
 		<div class='panel panel-default'>                                                        
 	 		<div class='panel-heading'>                                                            
-				<h3 class='panel-title'>Introdução!</h3>                                        
+				<h3 class='panel-title'>Mapa</h3>
 			</div>                                                                             
-			<div class='panel-body'>                                                           
-				mapa do jogo
+			<div class='panel-body'>
+				<img alt="mapa" src="web/img/mapa.png" width="850" height="490">
 			</div>                                                                             
 			<div class='btn-group'>                                                            
 				<input type='button' id='continuarIntro' class='btn btn-default' value='Continuar' />

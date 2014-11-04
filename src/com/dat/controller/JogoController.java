@@ -27,8 +27,8 @@ public class JogoController extends HttpServlet{
 			JogoService.montarGrupo(req);
 		}
 		
-		for(ClassePersonagem classe : JogoService.grupo.getGrupo().keySet()) {
-			System.out.println("Classe: " + classe + " Personagem: " + JogoService.grupo.getGrupo().get(classe));
+		if(acao.equals("encerrar")) {
+			JogoService.grupo = null;
 		}
 		
 		response.setContentType("text/html");

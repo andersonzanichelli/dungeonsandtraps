@@ -23,6 +23,15 @@ index.componentes = function(){
 	index.btnContinuarIntro = $('#continuarIntro');
 	
 	index.mapa = $('#mapa');
+	index.btnContinuarMapa = $('#continuarMapa');
+	
+	index.caminho = $('#caminho');
+	index.btnContinuarCaminho = $('#continuarCaminho');
+	
+	index.entrada = $('#entrada');
+	index.btnContinuarEntrada = $('#continuarEntrada');
+	
+	index.jogando = false;
 };
 
 index.init = function() {
@@ -32,8 +41,16 @@ index.init = function() {
 	index.personagens.hide();
 	index.intro.hide();
 	index.mapa.hide();
+	index.caminho.hide();
+	index.entrada.hide();
 	
-	index.btnNovo.on('click', index.novoJogo);
+	index.btnNovo.on('click', function(){
+		if(! index.jogando) {
+			index.novoJogo();
+		} else {
+			alert('Jogo já iniciado.');
+		}
+	});
 	index.btnInfo.on('click', index.informacao);
 	index.btnSair.on('click', index.sair);
 	
@@ -68,8 +85,22 @@ index.init = function() {
 	
 	index.btnContinuarIntro.on('click', function(){
 		index.intro.hide();
-		index.entrarNoDungeon();
+		index.mapa.show();
 	});
+	
+	index.btnContinuarMapa.on('click', function(){
+		index.mapa.hide();
+		index.caminho.show();
+	});
+	
+	index.btnContinuarCaminho.on('click', function(){
+		index.caminho.hide();
+		index.entrada.show();
+	});
+	
+	index.btnContinuarEntrada.on('click', function() {
+		index.entrada.hide();
+	})
 };
 
 index.novoJogo = function() {
@@ -83,7 +114,18 @@ index.informacao = function() {
 };
 
 index.sair = function() {
-	console.log('para tudo!');
+	var saiu = confirm('Deseja encerrar o jogo?');
+	
+	if(saiu) {
+		$.ajax({
+			url: 'jogoController',
+			data: {"acao": "encerrar"},
+			type: 'post',
+			success: function(){
+				index.jogando = false;
+			}
+		});
+	}
 };
 
 index.continuar = function() {
@@ -116,6 +158,7 @@ index.personagensEscolhidas = function() {
 		success: index.iniciarAventura
 	});
 	index.close("personagens");
+	index.jogando = true;
 }
 
 index.addPersonEscolhida = function() {
@@ -170,10 +213,6 @@ index.removeEscolhido = function() {
 
 index.iniciarAventura = function() {
 	index.intro.show();
-}
-
-index.entrarNoDungeon = function() {
-	index.mapa.show();
 }
 
 $( document ).ready(function(){

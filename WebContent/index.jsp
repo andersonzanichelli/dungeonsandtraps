@@ -21,9 +21,9 @@
     			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       				
       				<ul class="nav navbar-nav navbar-right">
-        				<li><a href="#" id="novo">Novo jogo</a></li>
-        				<li><a href="#" id="info">Informações</a></li>
-        				<li class="dropdown">
+        				<li><a href="#" id="novo" >Novo jogo</a></li>
+						<!-- <li><a href="#" id="info">Informações</a></li> -->
+        				<!-- <li class="dropdown">
 	          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configurações <span class="caret"></span></a>
 	          				<ul class="dropdown-menu" role="menu">
 	            				<li><a href="#">Nome</a></li>
@@ -32,8 +32,8 @@
 	            				<li class="divider"></li>
 	            				<li><a href="#">Separado</a></li>
 	          				</ul>
-        				</li>
-        				<li><a href="#" id="sair">Sair</a></li>
+        				</li> -->
+        				<li><a href="#" id="sair" >Sair</a></li>
       				</ul>
         		</div>
     		</div>
@@ -114,7 +114,35 @@
 				<img alt="mapa" src="web/img/mapa.png" width="850" height="490">
 			</div>                                                                             
 			<div class='btn-group'>                                                            
-				<input type='button' id='continuarIntro' class='btn btn-default' value='Continuar' />
+				<input type='button' id='continuarMapa' class='btn btn-default' value='Continuar' />
+			</div>                                                                             
+		</div>                                                                               
+	</div>
+	
+	<div id='caminho'>
+		<div class='panel panel-default'>                                                        
+	 		<div class='panel-heading'>                                                            
+				<h3 class='panel-title'>Caminhando até a mina</h3>                                        
+			</div>                                                                             
+			<div class='panel-body'>                                                           
+				O caminho até o local marcado no mapa ocorreu sem nenhum problema, e logo vocês chegaram até a mina.
+			</div>                                                                             
+			<div class='btn-group'>                                                            
+				<input type='button' id='continuarCaminho' class='btn btn-default' value='Continuar' />
+			</div>                                                                             
+		</div>                                                                               
+	</div>
+	
+	<div id='entrada'>
+		<div class='panel panel-default'>                                                        
+	 		<div class='panel-heading'>                                                            
+				<h3 class='panel-title'>Entrada da mina</h3>
+			</div>                                                                             
+			<div class='panel-body'>
+				<img alt="mapa" src="web/img/entrada.png" width="850" height="490">
+			</div>                                                                             
+			<div class='btn-group'>                                                            
+				<input type='button' id='continuarEntrada' class='btn btn-default' value='Continuar' />
 			</div>                                                                             
 		</div>                                                                               
 	</div>

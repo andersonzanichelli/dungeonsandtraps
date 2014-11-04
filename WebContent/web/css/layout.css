@@ -2,13 +2,13 @@ body {
 	background-image: url('../img/background.png');
 }
 
-#bemvindo, #intro {
+#bemvindo, #intro, #caminho {
 	padding-top: 80px;
 	margin: auto;
 	width: 50%;
 }
 
-#mapa {
+#mapa, #entrada {
 	margin: auto;
 	width: 70%;
 }

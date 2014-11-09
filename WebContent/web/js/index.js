@@ -22,8 +22,8 @@ index.componentes = function(){
 	index.intro = $('#intro');
 	index.btnContinuarIntro = $('#continuarIntro');
 	
-	index.mapa = $('#mapa');
-	index.btnContinuarMapa = $('#continuarMapa');
+	index.mundo = $('#mundo');
+	index.btnContinuarMundo = $('#continuarMundo');
 	
 	index.caminho = $('#caminho');
 	index.btnContinuarCaminho = $('#continuarCaminho');
@@ -31,18 +31,33 @@ index.componentes = function(){
 	index.entrada = $('#entrada');
 	index.btnContinuarEntrada = $('#continuarEntrada');
 	
+	index.mapa = $('#mapa');
+	index.btnContinuarMapa = $('#continuarMapa');
+	
+	index.black = $('.black');
+	
 	index.jogando = false;
+	
+	index.mapeamento = { "#p1" : ["#p2"]
+						,"#p2" : ["#p3", "#p6"]
+						,"#p3" : ["#p4"]
+						,"#p4" : ["#p5"]
+						,"#p5" : ["#p10"]
+						,"#p10": ["#p9"]
+						,"#p6" : ["#p7"]
+						,"#p7" : ["#p8", "#p12"]
+						,"#p12": ["#p13", "#p11", "#p15"]
+						,"#p11": ["#p14"]
+						,"#p14": ["#p16"]
+						,"#p16": ["#p17"]
+						,"#p17": ["#p18"]
+						,"#p18": ["#p19"]
+					   }
 };
 
 index.init = function() {
 	index.componentes();
-	
-	index.bemvindo.hide();
-	index.personagens.hide();
-	index.intro.hide();
-	index.mapa.hide();
-	index.caminho.hide();
-	index.entrada.hide();
+	index.esconderTudo();
 	
 	index.btnNovo.on('click', function(){
 		if(! index.jogando) {
@@ -85,11 +100,11 @@ index.init = function() {
 	
 	index.btnContinuarIntro.on('click', function(){
 		index.intro.hide();
-		index.mapa.show();
+		index.mundo.show();
 	});
 	
-	index.btnContinuarMapa.on('click', function(){
-		index.mapa.hide();
+	index.btnContinuarMundo.on('click', function(){
+		index.mundo.hide();
 		index.caminho.show();
 	});
 	
@@ -100,8 +115,27 @@ index.init = function() {
 	
 	index.btnContinuarEntrada.on('click', function() {
 		index.entrada.hide();
+		index.mapa.show();
+		index.palco.show();
 	})
+	
+	$('#p1').on('click', function(){
+		$('#p1').removeClass('black');
+		$('#p1').addClass('yellow');
+		index.ponto($('#p1'));
+	});
 };
+
+index.esconderTudo = function() {
+	index.bemvindo.hide();
+	index.personagens.hide();
+	index.intro.hide();
+	index.mundo.hide();
+	index.caminho.hide();
+	index.entrada.hide();
+	index.mapa.hide();
+	index.palco.hide();
+}
 
 index.novoJogo = function() {
 	// TODO implementar o reset de tudo;
@@ -123,6 +157,8 @@ index.sair = function() {
 			type: 'post',
 			success: function(){
 				index.jogando = false;
+				index.limparSelecao();
+				index.esconderTudo();
 			}
 		});
 	}
@@ -209,6 +245,37 @@ index.removeEscolhido = function() {
 		$(this).html('');
 		$(this).attr('disabled', 'disabled');
 	}
+}
+
+index.ponto = function(div) {
+	if(index.aleatorio(div)){
+		div.unbind('click');
+		div.css('cursor', 'default');
+		div.removeClass('yellow');
+		div.addClass('alfa');
+		index.habilitarPonto(div);
+	}
+}
+
+index.habilitarPonto = function(div) {
+	
+	$.each(index.mapeamento[div.selector], function(idx, key) {
+		$(key).css('cursor', 'pointer');
+		index.addListener($(key));
+	});
+}
+
+index.addListener = function(key){
+	key.on('click', function(){
+		key.removeClass('black');
+		key.addClass('yellow');
+		index.ponto(key);
+	});
+}
+
+index.aleatorio = function(div) {
+	alert('ajax para descobrir o que acontecerá');
+	return true;
 }
 
 index.iniciarAventura = function() {

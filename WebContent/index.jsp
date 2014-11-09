@@ -105,16 +105,16 @@
 		</div>                                                                               
 	</div>
 	
-	<div id='mapa'>
+	<div id='mundo'>
 		<div class='panel panel-default'>                                                        
 	 		<div class='panel-heading'>                                                            
-				<h3 class='panel-title'>Mapa</h3>
+				<h3 class='panel-title'>Mundo</h3>
 			</div>                                                                             
 			<div class='panel-body'>
-				<img alt="mapa" src="web/img/mapa.png" width="850" height="490">
+				<img alt="mapa" src="web/img/mundo.png" width="850" height="490">
 			</div>                                                                             
 			<div class='btn-group'>                                                            
-				<input type='button' id='continuarMapa' class='btn btn-default' value='Continuar' />
+				<input type='button' id='continuarMundo' class='btn btn-default' value='Continuar' />
 			</div>                                                                             
 		</div>                                                                               
 	</div>
@@ -142,12 +142,59 @@
 				<img alt="mapa" src="web/img/entrada.png" width="850" height="490">
 			</div>                                                                             
 			<div class='btn-group'>                                                            
-				<input type='button' id='continuarEntrada' class='btn btn-default' value='Continuar' />
+				<input type='button' id='continuarEntrada' class='btn btn-default' value='Entrar na mina' />
 			</div>                                                                             
 		</div>                                                                               
 	</div>
 	
+	<div id='mapa'>
+		<img alt="mapa" src="web/img/mapa.png">
+		<div id="p0" class="alfa" style="right: 215px; top: 265px;">.</div>
+		<div id="p1" class="black" style="right: 195px; top: 225px; cursor: pointer;">.</div>
+		<div id="p2" class="black" style="right: 195px; top: 180px;">.</div>
+		<div id="p3" class="black" style="right: 195px; top: 135px;">.</div>
+		
+		<div id="p4" class="black" style="right: 155px; top: 105px;">.</div>
+		<div id="p5" class="black" style="right: 155px; top: 145px;">.</div>
+		<div id="p6" class="black" style="right: 155px; top: 185px;">.</div>
+		<div id="p7" class="black" style="right: 155px; top: 225px;">.</div>
+		<div id="p8" class="black" style="right: 152px; top: 273px;">.</div>
+		
+		<div id="p9" class="black" style="right: 108px; top: 105px;">.</div>
+		<div id="p10" class="black" style="right: 115px; top: 139px;">.</div>
+		<div id="p11" class="black" style="right: 102px; top: 180px;">.</div>
+		<div id="p12" class="black" style="right: 115px; top: 226px;">.</div>
+		<div id="p13" class="black" style="right: 93px; top: 262px;">.</div>
+		
+		<div id="p14" class="black" style="right: 62px; top: 140px;">.</div>
+		<div id="p15" class="black" style="right: 75px; top: 209px;">.</div>
+		
+		<div id="p16" class="black" style="right: 43px; top: 179px;">.</div>
+		<div id="p17" class="black" style="right: 37px; top: 221px;">.</div>
+		<div id="p18" class="black" style="right: 37px; top: 262px;">.</div>
+		<div id="p19" class="black" style="right: 35px; top: 312px;">.</div>
+		
+	</div>
+	
 	<div id="palco">
+		<div class='panel panel-default'>                                                        
+	 		<div class='panel-heading'>                                                            
+				<h3 class='panel-title'>Dungeons and Traps</h3>                                        
+			</div>                                                                             
+			<div class='panel-body'>                                                           
+				<img id="campo" src="web/img/mine.jpg">
+				<div class="status">
+					<img id="protagonista1" src="web/img/mago.png">
+					<br/>
+					<img id="protagonista2" src="web/img/barbaro.png">
+					<br/>
+					<img id="protagonista3" src="web/img/batedor.png">
+				</div>
+			</div>                                                                             
+			<div class='btn-group'>                                                            
+				<input type='button' id='finish' style="display: none;" class='btn btn-default' value='Fim' />
+			</div>                                                                             
+		</div>
     </div>
 	
 	</body>

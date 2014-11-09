@@ -8,9 +8,50 @@ body {
 	width: 50%;
 }
 
-#mapa, #entrada {
+#entrada, #mundo {
 	margin: auto;
 	width: 70%;
+}
+
+#mapa {
+  position: absolute;
+  right: 10px;
+  height: 400px;
+}
+
+#palco {
+  position: absolute;
+  width: 925px;
+}
+
+#palco .panel-body {
+  height: 484px;
+}
+
+.black {
+    position: absolute;
+    background: black;
+    width: 49px;
+    height: 49px;
+    border-radius: 25px;
+    opacity: 0.88
+}
+
+.yellow {
+    position: absolute;
+    background: yellow;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.alfa {
+    position: absolute;
+    background: #CCC;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    opacity: 0.35
 }
 
 #personagens {
@@ -48,4 +89,14 @@ body {
 
 .shadow {
 	box-shadow: 7px 7px 5px #888;
+}
+
+.status {
+	position: absolute;
+    top: 80px;
+    right: 228px;
+}
+
+.status img {
+	width: 75px;
 }

@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dat.enums.ClassePersonagem;
-import com.dat.model.Grupo;
 import com.dat.service.JogoService;
 
 @WebServlet("/jogoController")
 public class JogoController extends HttpServlet{
+	
+	private JogoService jogoService = new JogoService();
 
 	private static final long serialVersionUID = -7412285655843378898L;
 	
@@ -23,18 +23,22 @@ public class JogoController extends HttpServlet{
 		String acao = request.getParameter("acao");
 		Map<String, String[]> req = request.getParameterMap();
 		
-		if(acao.equals("grupo")) {
-			JogoService.montarGrupo(req);
-		}
-		
-		if(acao.equals("encerrar")) {
-			JogoService.grupo = null;
-		}
-		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		out.println("{\"status\":\"success\"}");
+		if(acao.equals("grupo")) {
+			out.println(jogoService.montarGrupo(req));
+		}
+		
+		if(acao.equals("encerrar")) {
+			jogoService.grupo = null;
+		}
+		
+		if(acao.equals("evento")) {
+			String jsonResposta = jogoService.gerarEvento();
+			out.println(jsonResposta);
+		}
+		
 		out.close();
 	}
 

@@ -21,7 +21,7 @@ jogadores.mago = '{'
 	+'			,{"golpe_raio": 2}'
 	+'			,{"maos_ardentes": 2}'
 	+'			,{"escudo_arcano": 2}]'
-	+', "img": "img/mago.png" }';
+	+', "img": "web/img/mago.png" }';
 
 jogadores.anao = '{'
 	+'"classe": "anao"'
@@ -40,7 +40,7 @@ jogadores.anao = '{'
 	+', "vontade":    1'
 	+', "ataque": "d10"'
 	+', "distancia": 0'
-	+', "img": "img/anao.png"}';
+	+', "img": "web/img/anao.png"}';
 
 jogadores.barbaro = '{'
 	+'"classe": "barbaro"'
@@ -59,7 +59,7 @@ jogadores.barbaro = '{'
 	+', "vontade": 1'
 	+', "ataque": "d12"'
 	+', "distancia": 0'
-	+', "img": "img/barbaro.png"}';
+	+', "img": "web/img/barbaro.png"}';
 
 jogadores.guerreira = '{'
 	+'"classe": "guerreira"'
@@ -78,7 +78,7 @@ jogadores.guerreira = '{'
 	+', "vontade": 1'
 	+', "ataque": "d8"'
 	+', "distancia": 3'
-	+', "img": "img/guerreira.png"}';
+	+', "img": "web/img/guerreira.png"}';
 
 jogadores.batedor = '{'
 	+'"classe": "batedor"'
@@ -97,7 +97,7 @@ jogadores.batedor = '{'
 	+', "vontade": 3'
 	+', "ataque": "d8"'
 	+', "distancia": 15'
-	+', "img": "img/batedor.png"}';
+	+', "img": "web/img/batedor.png"}';
 
 jogadores.sacerdotisa = '{'
 	+'"classe": "sacerdotisa"'
@@ -120,7 +120,7 @@ jogadores.sacerdotisa = '{'
 	+'			,{"curar_area": 3}'
 	+'			,{"aura_protecao": 2}'
 	+'			,{"escudo_fe": 2}]'
-	+', "img": "img/sacerdotisa.png"}';
+	+', "img": "web/img/sacerdotisa.png"}';
 
 /*
 jogadores.mago = {"classe": "mago"

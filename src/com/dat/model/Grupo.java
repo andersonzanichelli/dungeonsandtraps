@@ -18,4 +18,21 @@ public class Grupo {
 	public Map<ClassePersonagem, Protagonista> getGrupo() {
 		return grupo;
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer herois = new StringBuffer();
+		int i = 0;
+		
+		for (ClassePersonagem classe : grupo.keySet()) {
+			herois.append(grupo.get(classe).toString());
+			
+			if(i < (grupo.size() - 1)) {
+				i++;
+				herois.append(",");
+			}
+		}
+		
+		return "[" + herois + "]";
+	}
 }

@@ -3,16 +3,20 @@ package com.dat.service;
 import java.util.Map;
 
 import com.dat.enums.ClassePersonagem;
+import com.dat.enums.TipoEvento;
+import com.dat.factory.EventoFactory;
 import com.dat.factory.ProtagonistaFactory;
+import com.dat.interfaces.Evento;
 import com.dat.json.JSONObject;
 import com.dat.model.Grupo;
 import com.dat.model.Protagonista;
+import com.dat.util.EnumUtils;
 
 public class JogoService {
 	
-	public static Grupo grupo = null;
+	public Grupo grupo = null;
 
-	public static void montarGrupo(Map<String, String[]> req) {
+	public String montarGrupo(Map<String, String[]> req) {
 		
 		ClassePersonagem classe0 = ClassePersonagem.valueOf(req.get("classe0")[0].toUpperCase());
 		Protagonista protagonista0 = ProtagonistaFactory.buildProtagonista(classe0, buildFromJson(req.get("json0")[0]));
@@ -24,10 +28,18 @@ public class JogoService {
 		Protagonista protagonista2 = ProtagonistaFactory.buildProtagonista(classe2, buildFromJson(req.get("json2")[0]));
 		
 		grupo = new Grupo(protagonista0, protagonista1, protagonista2);
+		
+		return grupo.toString();
 	}
 	
-	private static JSONObject buildFromJson(String json) {
+	private JSONObject buildFromJson(String json) {
 		return new JSONObject(json);
+	}
+
+	public String gerarEvento() {
+		Evento evento = EventoFactory.buildEvento(EnumUtils.randomEnum(TipoEvento.class));
+		
+		return evento.toString();
 	}
 
 }

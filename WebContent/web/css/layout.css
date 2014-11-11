@@ -100,3 +100,18 @@ body {
 .status img {
 	width: 75px;
 }
+
+.imagem{
+   position: relative;
+}
+
+.armadilha {
+	background-image: url("../img/atencao.png");
+    z-index: 50;
+    position: absolute;
+    float: left;
+}
+
+.alfa-armadilha {
+	opacity: 0.8;
+}

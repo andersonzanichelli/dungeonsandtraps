@@ -20,13 +20,8 @@ public enum Dado {
 	}
 	
 	public Integer lancar(){
-		
 		Random random = new Random();
-		
 		Integer faceDado = random.nextInt(face) + 1;
-		
 		return faceDado;
 	}
-	
-	
 }

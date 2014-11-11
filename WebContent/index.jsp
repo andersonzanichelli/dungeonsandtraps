@@ -184,11 +184,11 @@
 			<div class='panel-body'>                                                           
 				<img id="campo" src="web/img/mine.jpg">
 				<div class="status">
-					<img id="protagonista1" src="web/img/mago.png">
+					<img class="imagem" id="protagonista1">
 					<br/>
-					<img id="protagonista2" src="web/img/barbaro.png">
+					<img class="imagem" id="protagonista2">
 					<br/>
-					<img id="protagonista3" src="web/img/batedor.png">
+					<img class="imagem" id="protagonista3">
 				</div>
 			</div>                                                                             
 			<div class='btn-group'>                                                            

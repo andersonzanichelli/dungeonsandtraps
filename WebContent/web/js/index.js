@@ -19,6 +19,8 @@ index.componentes = function(){
 	
 	index.slots = $('.slot');
 	
+	index.grupo = {};
+	
 	index.intro = $('#intro');
 	index.btnContinuarIntro = $('#continuarIntro');
 	
@@ -38,6 +40,7 @@ index.componentes = function(){
 	
 	index.jogando = false;
 	
+	index.status = "";
 	index.mapeamento = { "#p1" : ["#p2"]
 						,"#p2" : ["#p3", "#p6"]
 						,"#p3" : ["#p4"]
@@ -115,8 +118,7 @@ index.init = function() {
 	
 	index.btnContinuarEntrada.on('click', function() {
 		index.entrada.hide();
-		index.mapa.show();
-		index.palco.show();
+		index.exibirPalco();
 	})
 	
 	$('#p1').on('click', function(){
@@ -247,16 +249,6 @@ index.removeEscolhido = function() {
 	}
 }
 
-index.ponto = function(div) {
-	if(index.aleatorio(div)){
-		div.unbind('click');
-		div.css('cursor', 'default');
-		div.removeClass('yellow');
-		div.addClass('alfa');
-		index.habilitarPonto(div);
-	}
-}
-
 index.habilitarPonto = function(div) {
 	
 	$.each(index.mapeamento[div.selector], function(idx, key) {
@@ -273,13 +265,90 @@ index.addListener = function(key){
 	});
 }
 
-index.aleatorio = function(div) {
-	alert('ajax para descobrir o que acontecerá');
-	return true;
+index.ponto = function(div) {
+	
+	$.ajax({
+		url: 'jogoController',
+		data: {"acao": "evento"},
+		type: 'post',
+		success: function(data){
+			var evento = JSON.parse(data)
+			var tipo = evento.tipo;
+			
+			switch(tipo) {
+				case "armadilha":
+					index.armadilha(evento);
+					break;
+				case "nenhum":
+					console.log(tipo);
+					index.novosPontos(div);
+					break;
+				case "orc":
+					console.log(tipo);
+					break;
+				case "tesouro":
+					console.log(tipo);
+					break;
+			}
+		}
+	});
 }
 
-index.iniciarAventura = function() {
+index.armadilha = function(armadilha) {
+	index.status = "armadilha";
+	index.addEventoNosPersonagens(index.desviarArmadilha);
+}
+
+index.desviarArmadilha = function(idx) {
+	// colocar alerta
+	//$(index.palco.find('div.status img.imagem')[2]).before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'))
+	
+	//remover alerta
+	index.palco.find('div.status img:nth-child(' + (idx - 1) + ')').remove();
+	
+	$.ajax({
+		url: 'jogoController',
+		data: {"acao": "D20"},
+		type: 'post',
+		success: index.danoArmadilha
+	});
+}
+
+index.danoArmadilha = function(data) {
+	var dano = JSON.parse(data);
+	console.log(dano.dano);
+}
+
+index.addEventoNosPersonagens = function(callback) {
+	$.each(index.palco.find('div.status img'), function(idx, heroi){
+		var $heroi = $(heroi);
+		//add on click na div armadilha
+		$heroi.before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'));
+		$heroi.addClass('alfa-armadilha');
+		$heroi.on('click', callback);
+	});
+}
+
+index.novosPontos = function(div) {
+	div.unbind('click');
+	div.css('cursor', 'default');
+	div.removeClass('yellow');
+	div.addClass('alfa');
+	index.habilitarPonto(div);
+}
+
+index.iniciarAventura = function(data) {
+	index.grupo = JSON.parse(data);
 	index.intro.show();
+}
+
+index.exibirPalco = function() {
+	index.mapa.show();
+	index.palco.show();
+	
+	index.palco.find('img#protagonista1').attr('src', index.grupo[0].img);
+	index.palco.find('img#protagonista2').attr('src', index.grupo[1].img);
+	index.palco.find('img#protagonista3').attr('src', index.grupo[2].img);
 }
 
 $( document ).ready(function(){

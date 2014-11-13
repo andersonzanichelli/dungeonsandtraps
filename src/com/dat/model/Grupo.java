@@ -18,6 +18,10 @@ public class Grupo {
 	public Map<ClassePersonagem, Protagonista> getGrupo() {
 		return grupo;
 	}
+	
+	public Protagonista getProtagonista(ClassePersonagem classe) {
+		return grupo.get(classe);
+	}
 
 	@Override
 	public String toString() {

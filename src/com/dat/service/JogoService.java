@@ -3,6 +3,7 @@ package com.dat.service;
 import java.util.Map;
 
 import com.dat.enums.ClassePersonagem;
+import com.dat.enums.Habilidade;
 import com.dat.enums.TipoEvento;
 import com.dat.factory.EventoFactory;
 import com.dat.factory.ProtagonistaFactory;
@@ -32,7 +33,7 @@ public class JogoService {
 		return grupo.toString();
 	}
 	
-	private JSONObject buildFromJson(String json) {
+	public JSONObject buildFromJson(String json) {
 		return new JSONObject(json);
 	}
 
@@ -42,4 +43,11 @@ public class JogoService {
 		return evento.toString();
 	}
 
+	public String realizarTesteHabilidade(Protagonista protagonista, Integer dificuldade, Habilidade habilidade) {
+		return "{\"desviouArmadilha\": " + protagonista.testeDeResistencia(dificuldade, habilidade) + "}";
+	}
+
+	public Protagonista getProtagonista(ClassePersonagem classe) {
+		return grupo.getProtagonista(classe);
+	}
 }

@@ -27,6 +27,10 @@ public abstract class Personagem {
 	protected Integer distancia;
 	protected String img;
 	
+	public void sofrerDano(Integer dano) {
+		this.pv -= dano;
+	}
+	
 	@Override
 	public String toString() {
 		return "{\"classe\": \""+ this.nome +"\""

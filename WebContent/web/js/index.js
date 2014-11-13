@@ -40,7 +40,7 @@ index.componentes = function(){
 	
 	index.jogando = false;
 	
-	index.status = "";
+	index.status = [];
 	index.mapeamento = { "#p1" : ["#p2"]
 						,"#p2" : ["#p3", "#p6"]
 						,"#p3" : ["#p4"]
@@ -267,6 +267,11 @@ index.addListener = function(key){
 
 index.ponto = function(div) {
 	
+	if(index.status[0] === "armadilha") {
+		alert("O personagem deve realizar o teste de armadilha!");
+		return;
+	}
+	
 	$.ajax({
 		url: 'jogoController',
 		data: {"acao": "evento"},
@@ -277,7 +282,8 @@ index.ponto = function(div) {
 			
 			switch(tipo) {
 				case "armadilha":
-					index.armadilha(evento);
+					index.addEventoNosPersonagens(evento, index.desviarArmadilha);
+					//index.armadilha(evento, div);
 					break;
 				case "nenhum":
 					console.log(tipo);
@@ -294,39 +300,69 @@ index.ponto = function(div) {
 	});
 }
 
-index.armadilha = function(armadilha) {
-	index.status = "armadilha";
-	index.addEventoNosPersonagens(index.desviarArmadilha);
+index.addEventoNosPersonagens = function(evento, callback) {
+	
+	switch(evento.tipo) {
+		case "armadilha":
+			$.each(index.palco.find('div.status img'), function(idx, heroi){
+				var $heroi = $(heroi);
+				index.status.push(evento.tipo);
+				//add on click na div armadilha
+				$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'A.png');
+				$heroi.on('click', function() {
+					callback(evento, $heroi);
+				});
+			});
+			break;
+	}
 }
 
-index.desviarArmadilha = function(idx) {
-	// colocar alerta
-	//$(index.palco.find('div.status img.imagem')[2]).before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'))
-	
-	//remover alerta
-	index.palco.find('div.status img:nth-child(' + (idx - 1) + ')').remove();
+//index.desviarArmadilha = function(idx) {
+//	// colocar alerta
+//	//$(index.palco.find('div.status img.imagem')[2]).before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'))
+//	
+//	//remover alerta
+//	index.palco.find('div.status img:nth-child(' + (idx - 1) + ')').remove();
+//}
+
+index.desviarArmadilha = function(armadilha, $heroi) {
 	
 	$.ajax({
 		url: 'jogoController',
-		data: {"acao": "D20"},
+		data: {"acao": "armadilha"
+			  ,"habilidade": armadilha.habilidade
+			  ,"dificuldade": armadilha.dificuldade
+			  ,"classe": $heroi.attr("classe")},
 		type: 'post',
-		success: index.danoArmadilha
+		success: function(data) {
+			var resposta = JSON.parse(data);
+			
+			if(!resposta.desviouArmadilha) {
+				index.danoArmadilha(armadilha.dano, $heroi);
+			}
+			
+			$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + '.png');
+			index.status.pop();
+		}
 	});
+	// TODO resolver pendencia
 }
 
-index.danoArmadilha = function(data) {
-	var dano = JSON.parse(data);
+index.danoArmadilha = function(dano, $heroi) {
+	
+	$.ajax({
+		url: 'jogoController',
+		data: {"acao": "danoArmadilha"
+			  ,"dano": dano
+			  ,"classe": $heroi.attr('classe')},
+		type: 'post',
+		success: function(data) {
+			var resposta = JSON.parse(data);
+			index.grupo = resposta;
+		}
+	});
+	
 	console.log(dano.dano);
-}
-
-index.addEventoNosPersonagens = function(callback) {
-	$.each(index.palco.find('div.status img'), function(idx, heroi){
-		var $heroi = $(heroi);
-		//add on click na div armadilha
-		$heroi.before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'));
-		$heroi.addClass('alfa-armadilha');
-		$heroi.on('click', callback);
-	});
 }
 
 index.novosPontos = function(div) {
@@ -346,9 +382,9 @@ index.exibirPalco = function() {
 	index.mapa.show();
 	index.palco.show();
 	
-	index.palco.find('img#protagonista1').attr('src', index.grupo[0].img);
-	index.palco.find('img#protagonista2').attr('src', index.grupo[1].img);
-	index.palco.find('img#protagonista3').attr('src', index.grupo[2].img);
+	index.palco.find('img#protagonista1').attr('src', index.grupo[0].img).attr('classe', index.grupo[0].classe);
+	index.palco.find('img#protagonista2').attr('src', index.grupo[1].img).attr('classe', index.grupo[1].classe);
+	index.palco.find('img#protagonista3').attr('src', index.grupo[2].img).attr('classe', index.grupo[2].classe);
 }
 
 $( document ).ready(function(){

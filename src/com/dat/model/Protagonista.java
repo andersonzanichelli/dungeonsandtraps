@@ -1,12 +1,17 @@
 package com.dat.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.dat.enums.ClassePersonagem;
 import com.dat.enums.Dado;
+import com.dat.enums.Habilidade;
 import com.dat.json.JSONObject;
 
 public abstract class Protagonista extends Personagem {
 
 	private ClassePersonagem classe = null;
+	private Map<Habilidade, Integer> habilidades = new HashMap<Habilidade, Integer>(3);
 
 	public Protagonista(ClassePersonagem classe, JSONObject jsonObject) {
 		this.classe = classe;
@@ -27,6 +32,10 @@ public abstract class Protagonista extends Personagem {
 		this.ataque = Dado.valueOf(jsonObject.get("ataque").toString().toUpperCase());
 		this.distancia = (Integer) jsonObject.get("distancia");
 		this.img = jsonObject.get("img").toString();
+		
+		habilidades.put(Habilidade.FORTITUDE, this.fortitude);
+		habilidades.put(Habilidade.REFLEXOS, this.reflexos);
+		habilidades.put(Habilidade.VONTADE, this.vontade);
 	}
 
 	public ClassePersonagem getClasse() {
@@ -35,5 +44,17 @@ public abstract class Protagonista extends Personagem {
 
 	public void setClasse(ClassePersonagem classe) {
 		this.classe = classe;
+	}
+	
+	public Boolean testeDeResistencia(Integer teste, Habilidade habilidade) {
+		Boolean passou = false;
+		Integer d20 = Dado.D20.lancar();
+		Integer bonus = habilidades.get(habilidade);
+		
+		if((d20 + bonus) >= teste) {
+			passou = true;
+		}
+		
+		return passou;
 	}
 }

@@ -298,7 +298,7 @@ index.ponto = function(div) {
 				case "armadilha":
 					index.traps.attr('src', evento.img);
 					index.traps.addClass(evento.nome);
-					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha);
+					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha, div);
 					break;
 				case "nenhum":
 					index.escreverLog("Nenhum evento!");
@@ -313,7 +313,7 @@ index.ponto = function(div) {
 	});
 }
 
-index.addEventoNosPersonagens = function(evento, callback) {
+index.addEventoNosPersonagens = function(evento, callback, div) {
 	
 	index.escreverLog(evento.tipo.toUpperCase() + " DE " + evento.nome.toUpperCase() + "! \n" +
 	"Necessário realizar um teste de " + evento.habilidade + " dificuldade: " + evento.dificuldade);
@@ -330,7 +330,7 @@ index.addEventoNosPersonagens = function(evento, callback) {
 					$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'A.png');
 					$heroi.css('cursor', 'pointer');
 					$heroi.on('click', function() {
-						callback(evento, $heroi);
+						callback(evento, $heroi, div);
 					});
 				}
 			});

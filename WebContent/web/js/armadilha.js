@@ -1,6 +1,6 @@
 var armadilha = {};
 
-armadilha.desviarArmadilha = function(trap, $heroi) {
+armadilha.desviarArmadilha = function(trap, $heroi, div) {
 	
 	$.ajax({
 		url: 'jogoController',
@@ -24,7 +24,8 @@ armadilha.desviarArmadilha = function(trap, $heroi) {
 			
 			if(index.status.length === 0) {
 				index.traps.removeAttr('src');
-				index.traps.removeClass(evento.nome);
+				index.traps.removeClass(trap.nome);
+				index.novosPontos(div);
 			}
 		}
 	});

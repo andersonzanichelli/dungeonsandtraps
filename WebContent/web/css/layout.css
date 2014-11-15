@@ -101,8 +101,9 @@ body {
 	width: 75px;
 }
 
-.imagem{
-   position: relative;
+.imagem {
+    position: relative;
+    right: -125px;
 }
 
 .armadilha {
@@ -114,4 +115,15 @@ body {
 
 .alfa-armadilha {
 	opacity: 0.8;
+}
+
+.info {
+    float: right;
+    position: relative;
+    right: -135px;
+    top: 0px;
+}
+
+.po, .pv {
+	width: 35px;
 }

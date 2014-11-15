@@ -3,6 +3,7 @@ http://filosofianerd.blogspot.com.br/2014/03/baixe-algumas-fichas-prontas-para.h
 
 TODO:
 * div com informações dos herois;
+* adicionar log da rolagem de dados;
 * adicionar atributo mochila de tesouro;
 * mostrar na div dos heróis a quantidade de tesouro;
 * adicionar imagens dos eventos;

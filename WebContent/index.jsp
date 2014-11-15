@@ -185,10 +185,30 @@
 				<img id="campo" src="web/img/mine.jpg">
 				<div class="status">
 					<img class="imagem" id="protagonista1">
+					<div class="info">
+						<label for="pv0">PV:</label>
+						<input type="text" id="pv0" class="pv" disabled="disabled" />
+						<label for="po0">PO:</label>
+						<input type="text" id="po0" class="po" disabled="disabled" />
+					</div>
 					<br/>
+					
 					<img class="imagem" id="protagonista2">
+					<div class="info">
+						<label for="pv1">PV:</label>
+						<input type="text" id="pv1" class="pv" disabled="disabled" />
+						<label for="po1">PO:</label>
+						<input type="text" id="po1" class="po" disabled="disabled" />
+					</div>
 					<br/>
+					
 					<img class="imagem" id="protagonista3">
+					<div class="info">
+						<label for="pv2">PV:</label>
+						<input type="text" id="pv2" class="pv" disabled="disabled" />
+						<label for="po2">PO:</label>
+						<input type="text" id="po2" class="po" disabled="disabled" />
+					</div>
 				</div>
 			</div>                                                                             
 			<div class='btn-group'>                                                            

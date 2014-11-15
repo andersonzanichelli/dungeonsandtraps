@@ -278,10 +278,6 @@ index.addListener = function(key){
 
 index.ponto = function(div) {
 
-//	if(index.gameOver.length === 3) {
-//		index.acabou();
-//	}
-	
 	if(index.status[0] === "armadilha") {
 		alert("O personagem deve realizar o teste de armadilha!");
 		return;
@@ -359,6 +355,9 @@ index.exibirPalco = function() {
 			$heroi.attr('src', index.grupo[idx].img);
 			$heroi.attr('classe', index.grupo[idx].classe);
 			$heroi.attr('status', index.grupo[idx].status);
+			
+			$('#pv' + idx).val(index.grupo[idx].pv);
+			$('#po' + idx).val(index.grupo[idx].po);
 		}
 	});
 }
@@ -366,7 +365,10 @@ index.exibirPalco = function() {
 index.atualizarHeroi = function() {
 	$.each(index.palco.find('.imagem'), function(idx, heroi) {
 		var $heroi = $(heroi);
+		
 		$heroi.attr('status', index.grupo[idx].status);
+		$('#pv' + idx).val(index.grupo[idx].pv);
+		$('#po' + idx).val(index.grupo[idx].po);
 		
 		if(index.grupo[idx].status === index.MORTO) {
 			$heroi.attr('src', 'web/img/rip.png');

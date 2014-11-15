@@ -1,18 +1,20 @@
 package com.dat.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.dat.enums.ClassePersonagem;
 import com.dat.enums.Dado;
 import com.dat.enums.Habilidade;
-import com.dat.enums.Status;
 import com.dat.json.JSONObject;
 
 public abstract class Protagonista extends Personagem {
 
 	private ClassePersonagem classe = null;
 	private Map<Habilidade, Integer> habilidades = new HashMap<Habilidade, Integer>(3);
+	private List<Tesouro> tesouros = new ArrayList<Tesouro>();
 
 	public Protagonista(ClassePersonagem classe, JSONObject jsonObject) {
 		this.classe = classe;
@@ -39,6 +41,7 @@ public abstract class Protagonista extends Personagem {
 		habilidades.put(Habilidade.VONTADE, this.vontade);
 		
 		this.vida = this.pv;
+		this.po = 0;
 	}
 
 	public ClassePersonagem getClasse() {
@@ -59,5 +62,26 @@ public abstract class Protagonista extends Personagem {
 		}
 		
 		return passou;
+	}
+	
+	public void porTesouroNaBolsa(Tesouro tesouro) {
+		this.tesouros.add(tesouro);
+		this.po += tesouro.getValor();
+	}
+	
+	public String getJsonTesouro() {
+		StringBuffer tesouro = new StringBuffer();
+		int i = 0;
+		
+		for (Tesouro t : tesouros) {
+			tesouro.append(t.toString());
+
+			if(i < (tesouros.size() - 1)) {
+				i++;
+				tesouro.append(",");
+			}
+		}
+		
+		return "[" + tesouro + "]";
 	}
 }

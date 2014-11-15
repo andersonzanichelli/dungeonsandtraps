@@ -31,6 +31,8 @@ public abstract class Personagem {
 	protected Integer distancia;
 	protected String img;
 	
+	protected Integer po;
+	
 	public void sofrerDano(Integer dano) {
 		this.pv -= dano;
 		
@@ -56,6 +58,7 @@ public abstract class Personagem {
 				+ ", \"distancia\": \""+ this.distancia +"\""
 				+ ", \"img\": \""+ this.img +"\""
 				+ ", \"status\": \""+ this.status +"\""
+				+ ", \"po\": \""+ this.po +"\""
 				+ "}";
 	}
 }

@@ -31,7 +31,7 @@ public class Tesouro implements Evento {
 		return img;
 	}
 
-	private Integer getValor() {
+	public Integer getValor() {
 		return valor;
 	}
 

@@ -3,6 +3,12 @@ var index = {};
 index.escolhidos = {};
 
 index.componentes = function(){
+	index.VIVO = "VIVO";
+	index.MORRENDO = "MORRENDO";
+	index.MORTO = "MORTO";
+	
+	index.gameOver = [];
+	
 	index.btnNovo = $('#novo');
 	index.btnInfo = $('#info');
 	index.btnSair = $('#sair');
@@ -149,10 +155,14 @@ index.informacao = function() {
 	console.log('infos');
 };
 
-index.sair = function() {
-	var saiu = confirm('Deseja encerrar o jogo?');
+index.sair = function(force) {
+	var saiu = false;
 	
-	if(saiu) {
+	if(!force) {
+		saiu = confirm('Deseja encerrar o jogo?');
+	}
+	
+	if(saiu || force) {
 		$.ajax({
 			url: 'jogoController',
 			data: {"acao": "encerrar"},
@@ -250,11 +260,12 @@ index.removeEscolhido = function() {
 }
 
 index.habilitarPonto = function(div) {
-	
-	$.each(index.mapeamento[div.selector], function(idx, key) {
-		$(key).css('cursor', 'pointer');
-		index.addListener($(key));
-	});
+	if(index.mapeamento[div.selector]) {
+		$.each(index.mapeamento[div.selector], function(idx, key) {
+			$(key).css('cursor', 'pointer');
+			index.addListener($(key));
+		});
+	}
 }
 
 index.addListener = function(key){
@@ -266,6 +277,10 @@ index.addListener = function(key){
 }
 
 index.ponto = function(div) {
+
+//	if(index.gameOver.length === 3) {
+//		index.acabou();
+//	}
 	
 	if(index.status[0] === "armadilha") {
 		alert("O personagem deve realizar o teste de armadilha!");
@@ -282,8 +297,7 @@ index.ponto = function(div) {
 			
 			switch(tipo) {
 				case "armadilha":
-					index.addEventoNosPersonagens(evento, index.desviarArmadilha);
-					//index.armadilha(evento, div);
+					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha);
 					break;
 				case "nenhum":
 					console.log(tipo);
@@ -306,63 +320,20 @@ index.addEventoNosPersonagens = function(evento, callback) {
 		case "armadilha":
 			$.each(index.palco.find('div.status img'), function(idx, heroi){
 				var $heroi = $(heroi);
-				index.status.push(evento.tipo);
-				//add on click na div armadilha
-				$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'A.png');
-				$heroi.on('click', function() {
-					callback(evento, $heroi);
-				});
+				var classe = $heroi.attr('classe');
+				var status = $heroi.attr('status');
+				
+				if( status !== index.MORTO ) {
+					index.status.push(evento.tipo);
+					$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'A.png');
+					$heroi.css('cursor', 'pointer');
+					$heroi.on('click', function() {
+						callback(evento, $heroi);
+					});
+				}
 			});
 			break;
 	}
-}
-
-//index.desviarArmadilha = function(idx) {
-//	// colocar alerta
-//	//$(index.palco.find('div.status img.imagem')[2]).before($('<div class="armadilha"><img src="web/img/atencao.png" class="armadilha"/>'))
-//	
-//	//remover alerta
-//	index.palco.find('div.status img:nth-child(' + (idx - 1) + ')').remove();
-//}
-
-index.desviarArmadilha = function(armadilha, $heroi) {
-	
-	$.ajax({
-		url: 'jogoController',
-		data: {"acao": "armadilha"
-			  ,"habilidade": armadilha.habilidade
-			  ,"dificuldade": armadilha.dificuldade
-			  ,"classe": $heroi.attr("classe")},
-		type: 'post',
-		success: function(data) {
-			var resposta = JSON.parse(data);
-			
-			if(!resposta.desviouArmadilha) {
-				index.danoArmadilha(armadilha.dano, $heroi);
-			}
-			
-			$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + '.png');
-			index.status.pop();
-		}
-	});
-	// TODO resolver pendencia
-}
-
-index.danoArmadilha = function(dano, $heroi) {
-	
-	$.ajax({
-		url: 'jogoController',
-		data: {"acao": "danoArmadilha"
-			  ,"dano": dano
-			  ,"classe": $heroi.attr('classe')},
-		type: 'post',
-		success: function(data) {
-			var resposta = JSON.parse(data);
-			index.grupo = resposta;
-		}
-	});
-	
-	console.log(dano.dano);
 }
 
 index.novosPontos = function(div) {
@@ -382,9 +353,39 @@ index.exibirPalco = function() {
 	index.mapa.show();
 	index.palco.show();
 	
-	index.palco.find('img#protagonista1').attr('src', index.grupo[0].img).attr('classe', index.grupo[0].classe);
-	index.palco.find('img#protagonista2').attr('src', index.grupo[1].img).attr('classe', index.grupo[1].classe);
-	index.palco.find('img#protagonista3').attr('src', index.grupo[2].img).attr('classe', index.grupo[2].classe);
+	$.each(index.palco.find('.imagem'), function(idx, heroi) {
+		var $heroi = $(heroi);
+		if($heroi.attr('status') !== index.MORTO ) {
+			$heroi.attr('src', index.grupo[idx].img);
+			$heroi.attr('classe', index.grupo[idx].classe);
+			$heroi.attr('status', index.grupo[idx].status);
+		}
+	});
+}
+
+index.atualizarHeroi = function() {
+	$.each(index.palco.find('.imagem'), function(idx, heroi) {
+		var $heroi = $(heroi);
+		$heroi.attr('status', index.grupo[idx].status);
+		
+		if(index.grupo[idx].status === index.MORTO) {
+			$heroi.attr('src', 'web/img/rip.png');
+			var classe = $heroi.attr('classe');
+			
+			if(($.inArray(classe, index.gameOver)) === -1) {
+				index.gameOver.push(classe);
+			}
+			
+			if(index.gameOver.length === 3) {
+				index.acabou();
+			}
+		}
+	});
+}
+
+index.acabou = function() {
+	alert("Game Over");
+	index.sair(true);
 }
 
 $( document ).ready(function(){

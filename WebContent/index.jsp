@@ -8,10 +8,10 @@
 		<link rel="stylesheet" href="web/css/layout.css">
 		<script src="web/js/jquery-1.11.1.min.js"></script>
 		<script src="web/js/bootstrap.min.js"></script>
-		<script src="web/js/angular.min.js"></script>
 		<script src="web/js/app.js"></script>
 		<script src="web/js/index.js"></script>
 		<script src="web/js/jogadores.js"></script>
+		<script src="web/js/armadilha.js"></script>
 		<title>Dungeons and Traps</title>
 	</head>
 	<body>

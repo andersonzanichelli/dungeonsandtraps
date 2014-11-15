@@ -1,10 +1,14 @@
 package com.dat.model;
 
 import com.dat.enums.Dado;
+import com.dat.enums.Status;
 
 public abstract class Personagem {
 
 	protected String nome;
+	
+	protected Integer vida = null;
+	protected Status status = Status.VIVO;
 	
 	protected Integer forca;
 	protected Integer destreza;
@@ -29,6 +33,8 @@ public abstract class Personagem {
 	
 	public void sofrerDano(Integer dano) {
 		this.pv -= dano;
+		
+		this.status = Status.qualStatus(this.vida, this.pv);
 	}
 	
 	@Override
@@ -49,6 +55,7 @@ public abstract class Personagem {
 				+ ", \"ataque\": \""+ this.ataque.toString() +"\""
 				+ ", \"distancia\": \""+ this.distancia +"\""
 				+ ", \"img\": \""+ this.img +"\""
+				+ ", \"status\": \""+ this.status +"\""
 				+ "}";
 	}
 }

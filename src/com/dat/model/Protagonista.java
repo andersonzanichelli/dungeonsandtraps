@@ -6,6 +6,7 @@ import java.util.Map;
 import com.dat.enums.ClassePersonagem;
 import com.dat.enums.Dado;
 import com.dat.enums.Habilidade;
+import com.dat.enums.Status;
 import com.dat.json.JSONObject;
 
 public abstract class Protagonista extends Personagem {
@@ -36,6 +37,8 @@ public abstract class Protagonista extends Personagem {
 		habilidades.put(Habilidade.FORTITUDE, this.fortitude);
 		habilidades.put(Habilidade.REFLEXOS, this.reflexos);
 		habilidades.put(Habilidade.VONTADE, this.vontade);
+		
+		this.vida = this.pv;
 	}
 
 	public ClassePersonagem getClasse() {

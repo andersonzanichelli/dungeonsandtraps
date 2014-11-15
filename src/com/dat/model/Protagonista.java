@@ -52,16 +52,20 @@ public abstract class Protagonista extends Personagem {
 		this.classe = classe;
 	}
 	
-	public Boolean testeDeResistencia(Integer teste, Habilidade habilidade) {
+	public String testeDeResistencia(Integer teste, Habilidade habilidade) {
 		Boolean passou = false;
+		
 		Integer d20 = Dado.D20.lancar();
 		Integer bonus = habilidades.get(habilidade);
+		Integer total = d20 + bonus;
 		
-		if((d20 + bonus) >= teste) {
+		if(total >= teste) {
 			passou = true;
 		}
 		
-		return passou;
+		return "{ \"desviouArmadilha\": " + passou + ""
+				+", \"d20\": \"" + d20 + " no d20 + " + bonus + " de bônus de " + habilidade.toString().toLowerCase() + " = " + total + "\""
+				+"}";
 	}
 	
 	public void porTesouroNaBolsa(Tesouro tesouro) {

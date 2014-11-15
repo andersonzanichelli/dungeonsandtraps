@@ -25,7 +25,7 @@ body {
 }
 
 #palco .panel-body {
-  height: 484px;
+  height: 415px;
 }
 
 .black {
@@ -34,7 +34,7 @@ body {
     width: 49px;
     height: 49px;
     border-radius: 25px;
-    opacity: 0.88
+    opacity: 0.70
 }
 
 .yellow {
@@ -51,7 +51,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    opacity: 0.35
+    opacity: 0.30
 }
 
 #personagens {
@@ -93,7 +93,7 @@ body {
 
 .status {
 	position: absolute;
-    top: 80px;
+    top: 60px;
     right: 228px;
 }
 
@@ -107,10 +107,27 @@ body {
 }
 
 .armadilha {
-	background-image: url("../img/atencao.png");
     z-index: 50;
     position: absolute;
     float: left;
+}
+
+.gas {
+    left: 110px;
+    width: 50%;
+    top: 40px;
+}
+
+.seta {
+    left: 220px;
+    width: 20%;
+    top: 158px;
+}
+
+.alcapao {
+    left: 230px;
+    width: 20%;
+    top: 210px;
 }
 
 .alfa-armadilha {

@@ -5,7 +5,7 @@ public enum TipoArmadilha {
 
 	ALCAPAO("alcapao", "D10", "web/img/alcapao.png", 15, Habilidade.REFLEXOS)
 	,SETA("seta", "D6", "web/img/seta.png", 20, Habilidade.REFLEXOS)
-	,GAZ("gaz", "D12", "web/img/gaz.png", 10, Habilidade.FORTITUDE);
+	,GAZ("gas", "D12", "web/img/gas.png", 10, Habilidade.FORTITUDE);
 	
 	String armadilha;
 	Dado dado;

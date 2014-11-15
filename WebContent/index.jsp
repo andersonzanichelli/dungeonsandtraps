@@ -183,6 +183,7 @@
 			</div>                                                                             
 			<div class='panel-body'>                                                           
 				<img id="campo" src="web/img/mine.jpg">
+				<img id="traps" class="armadilha ">
 				<div class="status">
 					<img class="imagem" id="protagonista1">
 					<div class="info">
@@ -211,8 +212,10 @@
 					</div>
 				</div>
 			</div>                                                                             
-			<div class='btn-group'>                                                            
-				<input type='button' id='finish' style="display: none;" class='btn btn-default' value='Fim' />
+			<div class='btn-group'>
+				<label for="log">Log:</label>
+				<br/>
+				<textarea id="log" rows="4" cols="100" disabled="disabled"></textarea>
 			</div>                                                                             
 		</div>
     </div>

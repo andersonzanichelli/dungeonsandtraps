@@ -44,7 +44,7 @@ public class JogoService {
 	}
 
 	public String realizarTesteHabilidade(Protagonista protagonista, Integer dificuldade, Habilidade habilidade) {
-		return "{\"desviouArmadilha\": " + protagonista.testeDeResistencia(dificuldade, habilidade) + "}";
+		return protagonista.testeDeResistencia(dificuldade, habilidade);
 	}
 
 	public Protagonista getProtagonista(ClassePersonagem classe) {

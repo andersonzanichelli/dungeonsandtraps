@@ -47,6 +47,9 @@ index.componentes = function(){
 	index.jogando = false;
 	
 	index.status = [];
+	index.log = $('#log');
+	index.traps = $('#traps');
+	
 	index.mapeamento = { "#p1" : ["#p2"]
 						,"#p2" : ["#p3", "#p6"]
 						,"#p3" : ["#p4"]
@@ -293,17 +296,17 @@ index.ponto = function(div) {
 			
 			switch(tipo) {
 				case "armadilha":
+					index.traps.attr('src', evento.img);
+					index.traps.addClass(evento.nome);
 					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha);
 					break;
 				case "nenhum":
-					console.log(tipo);
+					index.escreverLog("Nenhum evento!");
 					index.novosPontos(div);
 					break;
 				case "orc":
-					console.log(tipo);
 					break;
 				case "tesouro":
-					console.log(tipo);
 					break;
 			}
 		}
@@ -311,6 +314,9 @@ index.ponto = function(div) {
 }
 
 index.addEventoNosPersonagens = function(evento, callback) {
+	
+	index.escreverLog(evento.tipo.toUpperCase() + " DE " + evento.nome.toUpperCase() + "! \n" +
+	"Necessário realizar um teste de " + evento.habilidade + " dificuldade: " + evento.dificuldade);
 	
 	switch(evento.tipo) {
 		case "armadilha":
@@ -388,6 +394,10 @@ index.atualizarHeroi = function() {
 index.acabou = function() {
 	alert("Game Over");
 	index.sair(true);
+}
+
+index.escreverLog = function(msg) {
+	index.log.val(msg + '\n-----------------------------------------------------------------------------------------------------------\n' + index.log.val());
 }
 
 $( document ).ready(function(){

@@ -37,6 +37,13 @@ body {
     opacity: 0.70
 }
 
+.boss {
+	background-image: url('../img/boss.png');
+	position: absolute;
+    height: 60px;
+    width: 54px;
+}
+
 .yellow {
     position: absolute;
     background: yellow;

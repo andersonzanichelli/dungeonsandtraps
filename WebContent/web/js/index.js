@@ -284,14 +284,26 @@ index.addListener = function(key){
 
 index.ponto = function(div) {
 
-	if(index.status[0] === "armadilha") {
-		alert("O personagem deve realizar o teste de armadilha!");
-		return;
+	switch(index.status[0]) {
+		case "armadilha":
+			alert("O personagem deve realizar o teste de armadilha!");
+			return;
+		case "tesouro":
+			alert("Alguém deve carregar o tesouro!");
+			return;
+	}
+	
+	var data = {};
+	
+	if(div.attr("class") !== 'boss') {
+		data = {"acao": "evento"};
+	} else {
+		data = {"acao": "boss"};
 	}
 	
 	$.ajax({
 		url: 'jogoController',
-		data: {"acao": "evento"},
+		data: data,
 		type: 'post',
 		success: function(data){
 			var evento = JSON.parse(data)
@@ -310,6 +322,7 @@ index.ponto = function(div) {
 					break;
 				case "tesouro":
 					index.addEventoNoPalco(evento);
+					index.status.push(evento.tipo);
 					tesouro.colocarNaMochila(evento, div);
 					break;
 			}

@@ -35,6 +35,8 @@ tesouro.pegarTesouro = function(mao, evento, div) {
 				index.grupo = grupo;
 				index.atualizarHeroi();
 				tesouro.retirarMao(div, evento.nome);
+				index.escreverLog(classe.toUpperCase() + " colocou " + evento.nome.toUpperCase() + " em sua mochila.");
+				index.status.pop();
 			}
 		});
 }

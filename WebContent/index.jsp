@@ -173,7 +173,7 @@
 		<div id="p16" class="black" style="right: 43px; top: 179px;">.</div>
 		<div id="p17" class="black" style="right: 37px; top: 221px;">.</div>
 		<div id="p18" class="black" style="right: 37px; top: 262px;">.</div>
-		<div id="p19" class="black" style="right: 35px; top: 312px;">.</div>
+		<div id="p19" class="boss" style="right: 35px; top: 312px;">.</div>
 		
 	</div>
 	

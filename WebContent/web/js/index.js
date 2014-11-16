@@ -48,7 +48,8 @@ index.componentes = function(){
 	
 	index.status = [];
 	index.log = $('#log');
-	index.traps = $('#traps');
+	index.events = $('#events');
+	index.mao = $('.mao');
 	
 	index.mapeamento = { "#p1" : ["#p2"]
 						,"#p2" : ["#p3", "#p6"]
@@ -135,6 +136,7 @@ index.init = function() {
 		$('#p1').addClass('yellow');
 		index.ponto($('#p1'));
 	});
+	
 };
 
 index.esconderTudo = function() {
@@ -146,6 +148,7 @@ index.esconderTudo = function() {
 	index.entrada.hide();
 	index.mapa.hide();
 	index.palco.hide();
+	index.mao.hide();
 }
 
 index.novoJogo = function() {
@@ -296,8 +299,7 @@ index.ponto = function(div) {
 			
 			switch(tipo) {
 				case "armadilha":
-					index.traps.attr('src', evento.img);
-					index.traps.addClass(evento.nome);
+					index.addEventoNoPalco(evento);
 					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha, div);
 					break;
 				case "nenhum":
@@ -307,10 +309,17 @@ index.ponto = function(div) {
 				case "orc":
 					break;
 				case "tesouro":
+					index.addEventoNoPalco(evento);
+					tesouro.colocarNaMochila(evento, div);
 					break;
 			}
 		}
 	});
+}
+
+index.addEventoNoPalco = function(evento) {
+	index.events.attr('src', evento.img);
+	index.events.addClass(evento.nome);
 }
 
 index.addEventoNosPersonagens = function(evento, callback, div) {
@@ -389,6 +398,26 @@ index.atualizarHeroi = function() {
 			}
 		}
 	});
+}
+
+index.imagemHeroi = function($heroi) {
+	if($heroi.attr('status') !== index.MORTO) {
+		$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + '.png');
+	}
+}
+
+index.heroiSofreDano = function($heroi) {
+	$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'D.png');
+	
+	setTimeout( function() {
+		index.imagemHeroi($heroi);
+	}, 1800);
+}
+
+index.siga = function(div, cssClasse) {
+	index.events.removeAttr('src');
+	index.events.removeClass(cssClasse);
+	index.novosPontos(div);
 }
 
 index.acabou = function() {

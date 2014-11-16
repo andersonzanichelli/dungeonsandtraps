@@ -3,7 +3,7 @@ package com.dat.enums;
 public enum TipoTesouro {
 
 	OURO("ouro", "web/img/ouro.png", 10)
-	,JOIAS("joias", "web/img/joia.png", 100)
+	,JOIAS("joias", "web/img/joias.png", 100)
 	,POCAO("pocao", "web/img/pocao.png", 10)
 	,COMIDA("comida", "web/img/comida.png", 3)
 	,OSSO("osso", "web/img/osso.png", 0)

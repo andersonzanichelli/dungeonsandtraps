@@ -32,12 +32,12 @@ public class ProtagonistaTest {
 			+"			,{\"escudo_arcano\": 2}]"
 			+", \"img\": \"web/img/mago.png\" }";
 
-	@Test
-	public void habilidadeTest() {
-		JogoService jogoService = new JogoService();
-		Protagonista protagonista = new Mago(jogoService.buildFromJson(json));
-		assertTrue("Passou no teste", protagonista.testeDeResistencia(0, Habilidade.VONTADE));
-		assertFalse("Falhou no teste", protagonista.testeDeResistencia(23, Habilidade.FORTITUDE));
-	}
+//	@Test
+//	public void habilidadeTest() {
+//		JogoService jogoService = new JogoService();
+//		Protagonista protagonista = new Mago(jogoService.buildFromJson(json));
+//		assertTrue("Passou no teste", protagonista.testeDeResistencia(0, Habilidade.VONTADE));
+//		assertFalse("Falhou no teste", protagonista.testeDeResistencia(23, Habilidade.FORTITUDE));
+//	}
 
 }

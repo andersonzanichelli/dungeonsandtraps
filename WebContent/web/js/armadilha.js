@@ -23,9 +23,7 @@ armadilha.desviarArmadilha = function(trap, $heroi, div) {
 			index.status.pop();
 			
 			if(index.status.length === 0) {
-				index.traps.removeAttr('src');
-				index.traps.removeClass(trap.nome);
-				index.novosPontos(div);
+				index.siga(div, trap.nome);
 			}
 		}
 	});
@@ -35,13 +33,13 @@ armadilha.danoArmadilha = function(dano, $heroi) {
 	
 	$.ajax({
 		url: 'jogoController',
-		data: {"acao": "danoArmadilha"
+		data: {"acao": "dano_Armadilha"
 			  ,"dano": dano
 			  ,"classe": $heroi.attr('classe')},
 		type: 'post',
 		success: function(data) {
-			var resposta = JSON.parse(data);
-			index.grupo = resposta;
+			var grupo = JSON.parse(data);
+			index.grupo = grupo;
 			index.atualizarHeroi();
 		}
 	});
@@ -49,14 +47,10 @@ armadilha.danoArmadilha = function(dano, $heroi) {
 
 armadilha.sofreDano = function(desviou, $heroi) {
 	if(!desviou) {
-		$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'D.png');
+		index.heroiSofreDano($heroi);
+	} else {
+		index.imagemHeroi($heroi);
 	}
-	
-	setTimeout( function() {
-		if($heroi.attr('status') !== index.MORTO) {
-			$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + '.png');
-		}
-	}, 1000);
 	
 	$heroi.unbind('click');
 	$heroi.css('cursor', 'default');

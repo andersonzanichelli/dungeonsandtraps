@@ -12,6 +12,7 @@
 		<script src="web/js/index.js"></script>
 		<script src="web/js/jogadores.js"></script>
 		<script src="web/js/armadilha.js"></script>
+		<script src="web/js/tesouro.js"></script>
 		<title>Dungeons and Traps</title>
 	</head>
 	<body>
@@ -177,13 +178,16 @@
 	</div>
 	
 	<div id="palco">
+		<img class="mao" id="mao3" src="web/img/mao.png">
+		<img class="mao" id="mao1" src="web/img/mao.png">
+		<img class="mao" id="mao2" src="web/img/mao.png">
 		<div class='panel panel-default'>                                                        
 	 		<div class='panel-heading'>                                                            
 				<h3 class='panel-title'>Dungeons and Traps</h3>                                        
 			</div>                                                                             
 			<div class='panel-body'>                                                           
 				<img id="campo" src="web/img/mine.jpg">
-				<img id="traps" class="armadilha ">
+				<img id="events" class="evento ">
 				<div class="status">
 					<img class="imagem" id="protagonista1">
 					<div class="info">

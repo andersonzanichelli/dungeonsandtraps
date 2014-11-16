@@ -17,7 +17,7 @@ public class Tesouro implements Evento {
 		this.valor = t.getValor();
 	}
 	
-	private Tesouro(String nome, String img, Integer valor) {
+	public Tesouro(String nome, String img, Integer valor) {
 		this.nome = nome;
 		this.img = img;
 		this.valor = valor;

@@ -106,7 +106,41 @@ body {
     right: -125px;
 }
 
-.armadilha {
+.mao {
+    position: absolute;
+    right: 308px;
+    width: 9%;
+    z-index: 51;
+}
+
+#mao1 {
+    top: 94px;
+}
+
+#mao2 {
+    top: 230px;
+}
+
+#mao3 {
+    top: 348px;
+}
+
+#mao1:hover {
+	background: url('../img/maoh.png');
+	z-index: 52;
+}
+
+#mao2:hover {
+	background: url('../img/maoh.png');
+	z-index: 52;
+}
+
+#mao3:hover {
+	background: url('../img/maoh.png');
+	z-index: 52;
+}
+
+.evento {
     z-index: 50;
     position: absolute;
     float: left;
@@ -128,6 +162,42 @@ body {
     left: 230px;
     width: 20%;
     top: 210px;
+}
+
+.osso {
+    left: 222px;
+    top: 222px;
+    width: 15%;
+}
+
+.pocao {
+    left: 260px;
+    top: 222px;
+    width: 10%;
+}
+
+.ouro {
+    left: 240px;
+    top: 222px;
+    width: 15%;
+}
+
+.joias {
+    left: 225px;
+    top: 222px;
+    width: 15%;
+}
+
+.comida {
+    left: 222px;
+    top: 222px;
+    width: 15%;
+}
+
+.chave {
+    left: 222px;
+    top: 222px;
+    width: 15%;
 }
 
 .alfa-armadilha {

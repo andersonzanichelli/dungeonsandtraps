@@ -5,6 +5,7 @@ armadilha.desviarArmadilha = function(trap, $heroi, div) {
 	$.ajax({
 		url: 'jogoController',
 		data: {"acao": "armadilha"
+			  ,"player": index.player.val()
 			  ,"habilidade": trap.habilidade
 			  ,"dificuldade": trap.dificuldade
 			  ,"classe": $heroi.attr("classe")},
@@ -34,6 +35,7 @@ armadilha.danoArmadilha = function(dano, $heroi) {
 	$.ajax({
 		url: 'jogoController',
 		data: {"acao": "dano_Armadilha"
+			  ,"player": index.player.val()
 			  ,"dano": dano
 			  ,"classe": $heroi.attr('classe')},
 		type: 'post',

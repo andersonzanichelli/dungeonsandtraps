@@ -33,6 +33,7 @@ tesouro.pegarTesouro = function(mao, evento, div) {
 	$.ajax({
 		url: 'jogoController',
 		data: {"acao": "tesouro"
+			  ,"player": index.player.val()
 			  ,"classe": classe
 			  ,"nome": evento.nome
 			  ,"img": evento.img

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dat.factory.EventoDoJogoManager;
+import com.dat.service.JogoService;
 
 @WebServlet("/jogoController")
 public class JogoController extends HttpServlet{
@@ -17,6 +18,7 @@ public class JogoController extends HttpServlet{
 	private static final long serialVersionUID = -7412285655843378898L;
 	
 	private EventoDoJogoManager eventosManager = new EventoDoJogoManager();
+	private JogoService jogoService = new JogoService();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
@@ -27,7 +29,7 @@ public class JogoController extends HttpServlet{
 			String acao = request.getParameter("acao");
 			Map<String, String[]> req = request.getParameterMap();
 			
-			out.println(eventosManager.manage(acao, req));
+			out.println(eventosManager.manage(acao, req, jogoService));
 			
 			out.close();
 			

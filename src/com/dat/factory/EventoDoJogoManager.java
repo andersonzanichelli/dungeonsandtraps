@@ -11,9 +11,7 @@ import com.dat.service.JogoService;
 
 public class EventoDoJogoManager {
 	
-	private JogoService jogoService = new JogoService();
-
-	public String manage(String acao, Map<String, String[]> req) {
+	public String manage(String acao, Map<String, String[]> req, JogoService jogoService) {
 		
 		EventosDoJogo evento = EventosDoJogo.valueOf(acao.toUpperCase());
 		
@@ -30,47 +28,43 @@ public class EventoDoJogoManager {
 				return jogoService.gerarEvento();
 				
 			case ARMADILHA:
-				return tratarArmadilha(req);
+				return tratarArmadilha(req, jogoService);
 				
 			case DANO_ARMADILHA:
-				return tratarDanoArmadilha(req);
+				tratarDanoArmadilha(req, jogoService);
+				return jogoService.grupo.get(req.get("player")[0]).toString();
 				
 			case TESOURO:
-				return tratarTesouro(req);
+				tratarTesouro(req, jogoService);
+				return jogoService.grupo.get(req.get("player")[0]).toString();
 				
 			default:
 				throw new IllegalArgumentException(evento + ". Esse evento não foi reconhecido!");
 		}
 	}
 
-	private String tratarTesouro(Map<String, String[]> req) {
+	private void tratarTesouro(Map<String, String[]> req, JogoService jogoService) {
 		Tesouro tesouro = new Tesouro(req.get("nome")[0], req.get("img")[0], new Integer(req.get("valor")[0]));
-		Protagonista protagonista = getProtagonista(req.get("classe")[0].toUpperCase());
+		ClassePersonagem classe = ClassePersonagem.valueOf(req.get("classe")[0].toUpperCase());
+		Protagonista protagonista = jogoService.getProtagonista(classe, req.get("player")[0]);
 		protagonista.porTesouroNaBolsa(tesouro);
-		
-		return jogoService.grupo.toString();
 	}
 
-	private String tratarDanoArmadilha(Map<String, String[]> req) {
+	private void tratarDanoArmadilha(Map<String, String[]> req, JogoService jogoService) {
 		Integer dano = new Integer(req.get("dano")[0]);
-		Protagonista protagonista = getProtagonista(req.get("classe")[0].toUpperCase());
+		ClassePersonagem classe = ClassePersonagem.valueOf(req.get("classe")[0].toUpperCase());
+		Protagonista protagonista = jogoService.getProtagonista(classe, req.get("player")[0]);
 		protagonista.sofrerDano(dano);
-		
-		return jogoService.grupo.toString();
 	}
 
-	private String tratarArmadilha(Map<String, String[]> req) {
+	private String tratarArmadilha(Map<String, String[]> req, JogoService jogoService) {
 		
 		Habilidade habilidade = Habilidade.valueOf(req.get("habilidade")[0]);
 		Integer dificuldade = new Integer(req.get("dificuldade")[0]);
-		Protagonista protagonista = getProtagonista(req.get("classe")[0].toUpperCase());
+		ClassePersonagem classe = ClassePersonagem.valueOf(req.get("classe")[0].toUpperCase());
+		Protagonista protagonista = jogoService.getProtagonista(classe, req.get("player")[0]);
+		
 		
 		return protagonista.testeDeResistencia(dificuldade, habilidade);
-	}
-	
-	private Protagonista getProtagonista(String c) {
-		ClassePersonagem classe = ClassePersonagem.valueOf(c);
-		Protagonista protagonista = jogoService.getProtagonista(classe);
-		return protagonista;
 	}
 }

@@ -9,6 +9,9 @@ index.componentes = function(){
 	
 	index.gameOver = [];
 	
+	index.player = $('#player');
+	index.salvarPlayer = "";
+	
 	index.btnNovo = $('#novo');
 	index.btnInfo = $('#info');
 	index.btnSair = $('#sair');
@@ -132,7 +135,15 @@ index.init = function() {
 	index.btnContinuarEntrada.on('click', function() {
 		index.entrada.hide();
 		index.exibirPalco();
-	})
+	});
+	
+	index.player.on('keyup', function() {
+		if(index.player.val()) {
+			index.salvarPlayer = index.player.val();
+			index.btnContinuar.removeAttr('disabled');
+			index.btnContinuar.addClass('btn btn-success');
+		}
+	});
 	
 	$('#p1').on('click', function(){
 		$('#p1').removeClass('black');
@@ -153,6 +164,7 @@ index.esconderTudo = function() {
 	index.palco.hide();
 	index.mao.hide();
 	index.ataque.attr('disabled', 'disabled');
+	index.btnContinuar.attr('disabled', 'disabled');
 }
 
 index.novoJogo = function() {
@@ -175,7 +187,7 @@ index.sair = function(force) {
 	if(saiu || force) {
 		$.ajax({
 			url: 'jogoController',
-			data: {"acao": "encerrar"},
+			data: {"acao": "encerrar", "player": index.player.val()},
 			type: 'post',
 			success: function(){
 				index.jogando = false;
@@ -202,6 +214,7 @@ index.personagensEscolhidas = function() {
 	var person2 = index.escolhidos[2];
 	
 	var data = {"acao": "grupo"
+				,"player": index.player.val()
 				,json0: jogadores[index.escolhidos[0]]
 				,classe0: index.escolhidos[0]
 				,json1: jogadores[index.escolhidos[1]]
@@ -298,9 +311,9 @@ index.ponto = function(ponto) {
 	var data = {};
 	
 	if(ponto.attr("class") !== 'boss') {
-		data = {"acao": "evento"};
+		data = {"acao": "evento", "player": index.player.val()};
 	} else {
-		data = {"acao": "boss"};
+		data = {"acao": "boss", "player": index.player.val()};
 	}
 	
 	$.ajax({

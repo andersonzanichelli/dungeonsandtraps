@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="web/css/layout.css">
 		<script src="web/js/jquery-1.11.1.min.js"></script>
 		<script src="web/js/bootstrap.min.js"></script>
-		<script src="web/js/app.js"></script>
 		<script src="web/js/index.js"></script>
 		<script src="web/js/jogadores.js"></script>
 		<script src="web/js/armadilha.js"></script>
@@ -48,7 +47,9 @@
 				<h3 class='panel-title'>Novo jogo!</h3>                                        
 			</div>                                                                             
 			<div class='panel-body'>                                                           
-				Para explorar as masmorras de Dungeons and Traps clique em Continuar.          
+				Para explorar as masmorras de Dungeons and Traps preencha seu nome e clique em Continuar.
+				<br/>
+				<input type="text" id="player" placeholder="Nome"/>
 			</div>                                                                             
 			<div class='btn-group'>                                                            
 				<button type='button' id='cancelar' class='btn btn-default'>Cancelar</button>

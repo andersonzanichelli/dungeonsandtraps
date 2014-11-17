@@ -40,7 +40,7 @@ public class Orc extends Monstro implements Evento {
 
 	private String getImgAleatoria() {
 		Random random = new Random();
-		Integer indice = random.nextInt(imgOrcs.size()) + 1;
+		Integer indice = random.nextInt(imgOrcs.size());
 		
 		return imgOrcs.get(indice);
 	}

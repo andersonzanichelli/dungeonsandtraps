@@ -13,6 +13,7 @@
 		<script src="web/js/jogadores.js"></script>
 		<script src="web/js/armadilha.js"></script>
 		<script src="web/js/tesouro.js"></script>
+		<script src="web/js/batalha.js"></script>
 		<title>Dungeons and Traps</title>
 	</head>
 	<body>
@@ -178,9 +179,9 @@
 	</div>
 	
 	<div id="palco">
-		<img class="mao" id="mao3" src="web/img/mao.png">
 		<img class="mao" id="mao1" src="web/img/mao.png">
 		<img class="mao" id="mao2" src="web/img/mao.png">
+		<img class="mao" id="mao3" src="web/img/mao.png">
 		<div class='panel panel-default'>                                                        
 	 		<div class='panel-heading'>                                                            
 				<h3 class='panel-title'>Dungeons and Traps</h3>                                        
@@ -195,6 +196,8 @@
 						<input type="text" id="pv0" class="pv" disabled="disabled" />
 						<label for="po0">PO:</label>
 						<input type="text" id="po0" class="po" disabled="disabled" />
+						<br/>
+						<button id="ataque1" class="ataque">Atacar</button>
 					</div>
 					<br/>
 					
@@ -204,6 +207,8 @@
 						<input type="text" id="pv1" class="pv" disabled="disabled" />
 						<label for="po1">PO:</label>
 						<input type="text" id="po1" class="po" disabled="disabled" />
+						<br/>
+						<button id="ataque2" class="ataque">Atacar</button>
 					</div>
 					<br/>
 					
@@ -213,6 +218,8 @@
 						<input type="text" id="pv2" class="pv" disabled="disabled" />
 						<label for="po2">PO:</label>
 						<input type="text" id="po2" class="po" disabled="disabled" />
+						<br/>
+						<button id="ataque3" class="ataque">Atacar</button>
 					</div>
 				</div>
 			</div>                                                                             

@@ -42,6 +42,7 @@ public abstract class Personagem {
 	@Override
 	public String toString() {
 		return "{\"classe\": \""+ this.nome +"\""
+				+ ", \"nome\": \""+ this.nome +"\""
 				+ ", \"forca\": \""+ this.forca +"\""
 				+ ", \"constituicao\": \""+ this.constituicao +"\""
 				+ ", \"inteligencia\": \""+ this.inteligencia +"\""

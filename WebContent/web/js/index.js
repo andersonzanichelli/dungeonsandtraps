@@ -50,6 +50,9 @@ index.componentes = function(){
 	index.log = $('#log');
 	index.events = $('#events');
 	index.mao = $('.mao');
+	index.ataque = $('.ataque');
+	
+	$("#p1").addClass("yellow");
 	
 	index.mapeamento = { "#p1" : ["#p2"]
 						,"#p2" : ["#p3", "#p6"]
@@ -133,7 +136,7 @@ index.init = function() {
 	
 	$('#p1').on('click', function(){
 		$('#p1').removeClass('black');
-		$('#p1').addClass('yellow');
+		$('#p1').addClass('red');
 		index.ponto($('#p1'));
 	});
 	
@@ -149,6 +152,7 @@ index.esconderTudo = function() {
 	index.mapa.hide();
 	index.palco.hide();
 	index.mao.hide();
+	index.ataque.attr('disabled', 'disabled');
 }
 
 index.novoJogo = function() {
@@ -187,8 +191,8 @@ index.continuar = function() {
 	index.personagens.show();
 };
 
-index.close = function(div) {
-	var alvo = $('#' + div);
+index.close = function(panel) {
+	var alvo = $('#' + panel);
 	alvo.hide();
 }
 
@@ -265,10 +269,12 @@ index.removeEscolhido = function() {
 	}
 }
 
-index.habilitarPonto = function(div) {
-	if(index.mapeamento[div.selector]) {
-		$.each(index.mapeamento[div.selector], function(idx, key) {
-			$(key).css('cursor', 'pointer');
+index.habilitarPonto = function(ponto) {
+	if(index.mapeamento[ponto.selector]) {
+		$.each(index.mapeamento[ponto.selector], function(idx, key) {
+			var $key = $(key); 
+			$key.css('cursor', 'pointer');
+			$key.addClass('yellow');
 			index.addListener($(key));
 		});
 	}
@@ -276,26 +282,22 @@ index.habilitarPonto = function(div) {
 
 index.addListener = function(key){
 	key.on('click', function(){
-		key.removeClass('black');
-		key.addClass('yellow');
 		index.ponto(key);
 	});
 }
 
-index.ponto = function(div) {
-
-	switch(index.status[0]) {
-		case "armadilha":
-			alert("O personagem deve realizar o teste de armadilha!");
-			return;
-		case "tesouro":
-			alert("Alguém deve carregar o tesouro!");
-			return;
+index.ponto = function(ponto) {
+	
+	if(!index.podeSeguir()) {
+		return;
 	}
+	
+	ponto.removeClass('black');
+	ponto.addClass('red');
 	
 	var data = {};
 	
-	if(div.attr("class") !== 'boss') {
+	if(ponto.attr("class") !== 'boss') {
 		data = {"acao": "evento"};
 	} else {
 		data = {"acao": "boss"};
@@ -312,18 +314,20 @@ index.ponto = function(div) {
 			switch(tipo) {
 				case "armadilha":
 					index.addEventoNoPalco(evento);
-					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha, div);
+					index.addEventoNosPersonagens(evento, armadilha.desviarArmadilha, ponto);
 					break;
 				case "nenhum":
 					index.escreverLog("Nenhum evento!");
-					index.novosPontos(div);
+					index.novosPontos(ponto);
 					break;
-				case "orc":
+				case "inimigo":
+					index.addEventoNoPalco(evento);
+					index.addEventoNosPersonagens(evento, batalha.iniciarBatalha, ponto);
 					break;
 				case "tesouro":
 					index.addEventoNoPalco(evento);
 					index.status.push(evento.tipo);
-					tesouro.colocarNaMochila(evento, div);
+					tesouro.colocarNaMochila(evento, ponto);
 					break;
 			}
 		}
@@ -335,13 +339,14 @@ index.addEventoNoPalco = function(evento) {
 	index.events.addClass(evento.nome);
 }
 
-index.addEventoNosPersonagens = function(evento, callback, div) {
-	
-	index.escreverLog(evento.tipo.toUpperCase() + " DE " + evento.nome.toUpperCase() + "! \n" +
-	"Necessário realizar um teste de " + evento.habilidade + " dificuldade: " + evento.dificuldade);
+index.addEventoNosPersonagens = function(evento, callback, ponto) {
 	
 	switch(evento.tipo) {
 		case "armadilha":
+			
+			index.escreverLog(evento.tipo.toUpperCase() + " DE " + evento.nome.toUpperCase() + "! \n" +
+			"Necessário realizar um teste de " + evento.habilidade + " dificuldade: " + evento.dificuldade);
+			
 			$.each(index.palco.find('div.status img'), function(idx, heroi){
 				var $heroi = $(heroi);
 				var classe = $heroi.attr('classe');
@@ -352,7 +357,27 @@ index.addEventoNosPersonagens = function(evento, callback, div) {
 					$heroi.attr('src', 'web/img/' + $heroi.attr('classe') + 'A.png');
 					$heroi.css('cursor', 'pointer');
 					$heroi.on('click', function() {
-						callback(evento, $heroi, div);
+						callback(evento, $heroi, ponto);
+					});
+				}
+			});
+			break;
+		case "inimigo":
+			
+			index.escreverLog("Um ORC foi encontrado... Atacaaaaar!");
+			index.status.push(evento.tipo);
+			
+			$.each(index.palco.find('div.status div.info button'), function(idx, botao){
+				var $botao = $(botao);
+				var $heroi = index.getProtagonista($botao);
+				var classe = $heroi.attr('classe');
+				var status = $heroi.attr('status');
+				
+				if( status !== index.MORTO ) {
+					$botao.removeAttr("disabled");
+					$botao.addClass('btn btn-danger');
+					$botao.on('click', function() {
+						callback(evento, $heroi, ponto);
 					});
 				}
 			});
@@ -360,12 +385,17 @@ index.addEventoNosPersonagens = function(evento, callback, div) {
 	}
 }
 
-index.novosPontos = function(div) {
-	div.unbind('click');
-	div.css('cursor', 'default');
-	div.removeClass('yellow');
-	div.addClass('alfa');
-	index.habilitarPonto(div);
+index.novosPontos = function(ponto) {
+	
+	if(!index.podeSeguir()) {
+		return;
+	}
+	
+	ponto.unbind('click');
+	ponto.css('cursor', 'default');
+	ponto.removeClass('red');
+	ponto.addClass('alfa');
+	index.habilitarPonto(ponto);
 }
 
 index.iniciarAventura = function(data) {
@@ -427,10 +457,39 @@ index.heroiSofreDano = function($heroi) {
 	}, 1800);
 }
 
-index.siga = function(div, cssClasse) {
+index.siga = function(ponto, cssClasse) {
+	
+	if(!index.podeSeguir()) {
+		return;
+	}
+	
 	index.events.removeAttr('src');
 	index.events.removeClass(cssClasse);
-	index.novosPontos(div);
+	index.novosPontos(ponto);
+}
+
+index.podeSeguir = function() {
+	if(index.status.length > 0) {
+		
+		switch(index.status[0]) {
+			case "armadilha":
+				alert("O personagem deve realizar o teste de armadilha!");
+				return false;
+			case "tesouro":
+				alert("Alguém deve carregar o tesouro!");
+				return false;
+			case "inimigo":
+				alert("O inimigo deve ser derrotado!");
+				return false;
+		}
+	}
+	
+	return true;
+}
+
+index.getProtagonista = function(obj) {
+	var num = obj.attr('id').replace(/[^0-9]/g,'');
+	return $("#protagonista" + num);
 }
 
 index.acabou = function() {

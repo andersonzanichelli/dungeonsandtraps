@@ -3,19 +3,19 @@ package com.dat.enums;
 
 public enum TipoArmadilha {
 
-	ALCAPAO("alcapao", "D10", "web/img/alcapao.png", 15, Habilidade.REFLEXOS)
-	,SETA("seta", "D6", "web/img/seta.png", 20, Habilidade.REFLEXOS)
-	,GAZ("gas", "D12", "web/img/gas.png", 10, Habilidade.FORTITUDE);
+	ALCAPAO("alcapao", "D10", "web/img/alcapao.png",20 /*Dado.D10.lancar()*/, Habilidade.REFLEXOS)
+	,SETA("seta", "D6", "web/img/seta.png",20 /*Dado.D12.lancar()*/, Habilidade.REFLEXOS)
+	,GAZ("gas", "D12", "web/img/gas.png",20 /*Dado.D20.lancar()*/, Habilidade.FORTITUDE);
 	
 	String armadilha;
-	Dado dado;
+	Dado dano;
 	String img;
 	Integer dificuldade;
 	Habilidade habilidade;
 	
-	private TipoArmadilha(String armadilha, String dado, String img, Integer dificuldade, Habilidade habilidade) {
+	private TipoArmadilha(String armadilha, String dano, String img, Integer dificuldade, Habilidade habilidade) {
 		this.armadilha = armadilha;
-		this.dado = Dado.valueOf(dado);
+		this.dano = Dado.valueOf(dano);
 		this.img = img;
 		this.dificuldade = dificuldade;
 		this.habilidade = habilidade;
@@ -25,8 +25,8 @@ public enum TipoArmadilha {
 		return armadilha;
 	}
 
-	public Dado getDado() {
-		return dado;
+	public Dado getDano() {
+		return dano;
 	}
 	
 	public String getImg() {

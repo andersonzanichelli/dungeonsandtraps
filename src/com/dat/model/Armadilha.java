@@ -54,7 +54,7 @@ public class Armadilha implements Evento {
 	
 	private Armadilha geradorArmadilha() {
 		TipoArmadilha tipoArmadilha = EnumUtils.randomEnum(TipoArmadilha.class);
-		Armadilha armadilha = new Armadilha(tipoArmadilha.getArmadilha(), tipoArmadilha.getDado(), tipoArmadilha.getImg(), tipoArmadilha.getDificuldade(), tipoArmadilha.getHabilidade());
+		Armadilha armadilha = new Armadilha(tipoArmadilha.getArmadilha(), tipoArmadilha.getDano(), tipoArmadilha.getImg(), tipoArmadilha.getDificuldade(), tipoArmadilha.getHabilidade());
 		return armadilha;
 	}
 

@@ -65,7 +65,7 @@ public class EventoDoJogoManager {
 		Integer dificuldade = new Integer(req.get("dificuldade")[0]);
 		Protagonista protagonista = getProtagonista(req.get("classe")[0].toUpperCase());
 		
-		return jogoService.realizarTesteHabilidade(protagonista, dificuldade, habilidade);
+		return protagonista.testeDeResistencia(dificuldade, habilidade);
 	}
 	
 	private Protagonista getProtagonista(String c) {

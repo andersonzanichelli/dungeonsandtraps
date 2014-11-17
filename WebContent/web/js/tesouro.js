@@ -9,18 +9,26 @@ tesouro.colocarNaMochila = function(evento, div){
 }
 
 tesouro.mostrarMao = function(evento, div) {
-	index.mao.css('cursor', 'pointer');
+
+	var $heroi = index.getProtagonista(index.mao);
 	
-	index.mao.on('click', function() {
-			tesouro.pegarTesouro(this, evento, div);
-		});
-	
-	index.mao.show();
+	$.each(index.mao, function(idx, mao){
+		
+		if(index.grupo[idx].status !== index.MORTO) {
+			var $mao = $(mao);
+			$mao.css('cursor', 'pointer');
+			$mao.on('click', function() {
+				tesouro.pegarTesouro(this, evento, div);
+			});
+			$mao.show();
+		}
+	});
 }
 
 tesouro.pegarTesouro = function(mao, evento, div) {
-	var num = $(mao).attr('id').replace(/[^0-9]/g,'');
-	var classe = $("#protagonista" + num).attr('classe');
+	
+	var $heroi = index.getProtagonista($(mao));
+	var classe = $heroi.attr('classe');
 	
 	$.ajax({
 		url: 'jogoController',
@@ -34,9 +42,9 @@ tesouro.pegarTesouro = function(mao, evento, div) {
 				var grupo = JSON.parse(data);
 				index.grupo = grupo;
 				index.atualizarHeroi();
+				index.status.pop();
 				tesouro.retirarMao(div, evento.nome);
 				index.escreverLog(classe.toUpperCase() + " colocou " + evento.nome.toUpperCase() + " em sua mochila.");
-				index.status.pop();
 			}
 		});
 }

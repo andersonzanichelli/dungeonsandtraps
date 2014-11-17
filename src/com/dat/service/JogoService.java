@@ -43,10 +43,6 @@ public class JogoService {
 		return evento.toString();
 	}
 
-	public String realizarTesteHabilidade(Protagonista protagonista, Integer dificuldade, Habilidade habilidade) {
-		return protagonista.testeDeResistencia(dificuldade, habilidade);
-	}
-
 	public Protagonista getProtagonista(ClassePersonagem classe) {
 		return grupo.getProtagonista(classe);
 	}

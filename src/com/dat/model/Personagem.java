@@ -39,6 +39,18 @@ public abstract class Personagem {
 		this.status = Status.qualStatus(this.vida, this.pv);
 	}
 	
+	public Integer atacar() {
+		return this.ataque.lancar();
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public Integer getIniciativa() {
+		return iniciativa;
+	}
+
 	@Override
 	public String toString() {
 		return "{\"classe\": \""+ this.nome +"\""

@@ -1,5 +1,7 @@
 var batalha = {};
 
+batalha.ordem = [];
+
 batalha.iniciarBatalha = function(evento, $heroi, ponto) {
 	console.log([ponto, $(ponto), evento, $heroi]);
 	index.status.pop();
@@ -13,4 +15,18 @@ batalha.iniciarBatalha = function(evento, $heroi, ponto) {
 	});
 	
 	index.siga($(ponto), evento.nome);
+}
+
+batalha.rolarIniciativa = function() {
+	$.ajax({
+		url: 'jogoController',
+		data: {"acao": "iniciativa", "player": index.player.val()},
+		type: 'post',
+		success: function(data){
+			var ordem = JSON.parse(data);
+			$.each(ordem, function(idx, obj) {
+				console.log(obj);
+			});
+		}
+	});
 }

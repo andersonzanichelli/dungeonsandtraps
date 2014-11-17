@@ -4,19 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.dat.enums.ClassePersonagem;
-import com.dat.enums.Habilidade;
 import com.dat.enums.TipoEvento;
 import com.dat.factory.EventoFactory;
 import com.dat.factory.ProtagonistaFactory;
 import com.dat.interfaces.Evento;
 import com.dat.json.JSONObject;
 import com.dat.model.Grupo;
+import com.dat.model.Monstro;
+import com.dat.model.Orc;
 import com.dat.model.Protagonista;
 import com.dat.util.EnumUtils;
 
 public class JogoService {
 	
 	public Map<String, Grupo> grupo = new HashMap<String, Grupo>();
+	public Map<String, Monstro> monstro = new HashMap<String, Monstro>();
 
 	public String montarGrupo(Map<String, String[]> req) {
 		
@@ -41,8 +43,12 @@ public class JogoService {
 		return new JSONObject(json);
 	}
 
-	public String gerarEvento() {
+	public String gerarEvento(String player) {
 		Evento evento = EventoFactory.buildEvento(EnumUtils.randomEnum(TipoEvento.class));
+		
+		if(evento instanceof Orc) {
+			monstro.put(player, (Monstro) evento);
+		}
 		
 		return evento.toString();
 	}

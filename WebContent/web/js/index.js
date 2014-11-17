@@ -335,6 +335,7 @@ index.ponto = function(ponto) {
 					break;
 				case "inimigo":
 					index.addEventoNoPalco(evento);
+					batalha.rolarIniciativa();
 					index.addEventoNosPersonagens(evento, batalha.iniciarBatalha, ponto);
 					break;
 				case "tesouro":

@@ -29,15 +29,17 @@ public class Orc extends Monstro implements Evento {
 		this.ca = 14;
 		this.iniciativa = 0;
 		this.deslocamento = 6;
-		this.pv = Dado.D12.lancar();
+		this.pv = Dado.D12.lancar() + 8;
 		this.fortitude = 2;
 		this.reflexos = 0;
 		this.vontade = -1;
 		this.ataque = Dado.valueOf("D8");
 		this.distancia = 0;
 		this.img = getImgAleatoria();
+		
+		this.vida = this.pv;
 	}
-
+	
 	private String getImgAleatoria() {
 		Random random = new Random();
 		Integer indice = random.nextInt(imgOrcs.size());

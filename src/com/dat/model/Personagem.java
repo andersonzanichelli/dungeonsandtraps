@@ -39,6 +39,10 @@ public abstract class Personagem {
 		this.status = Status.qualStatus(this.vida, this.pv);
 	}
 	
+	public Status getStatus() {
+		return this.status;
+	}
+	
 	public Integer atacar() {
 		return this.ataque.lancar();
 	}
@@ -49,6 +53,10 @@ public abstract class Personagem {
 
 	public Integer getIniciativa() {
 		return iniciativa;
+	}
+	
+	public String getAtaque() {
+		return this.ataque.toString();
 	}
 
 	@Override

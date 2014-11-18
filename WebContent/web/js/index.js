@@ -88,7 +88,13 @@ index.init = function() {
 	index.btnInfo.on('click', index.informacao);
 	index.btnSair.on('click', index.sair);
 	
-	index.btnContinuar.on('click', index.continuar);
+	index.btnContinuar.on('click', function() {
+		if(index.player.val() === "") {
+			alert("Informe o nome do jogador!");
+			return;
+		}
+		index.continuar();
+	});
 	
 	index.btnCancelar.on('click', function() {
 		index.close("bemvindo");
@@ -335,8 +341,8 @@ index.ponto = function(ponto) {
 					break;
 				case "inimigo":
 					index.addEventoNoPalco(evento);
-					batalha.rolarIniciativa();
-					index.addEventoNosPersonagens(evento, batalha.iniciarBatalha, ponto);
+					//batalha.rolarIniciativa();
+					index.addEventoNosPersonagens(evento, batalha.atacar, ponto);
 					break;
 				case "tesouro":
 					index.addEventoNoPalco(evento);
@@ -387,11 +393,13 @@ index.addEventoNosPersonagens = function(evento, callback, ponto) {
 				var classe = $heroi.attr('classe');
 				var status = $heroi.attr('status');
 				
+				//alert(status);
+				
 				if( status !== index.MORTO ) {
 					$botao.removeAttr("disabled");
 					$botao.addClass('btn btn-danger');
 					$botao.on('click', function() {
-						callback(evento, $heroi, ponto);
+						callback(evento, $heroi, ponto, $botao);
 					});
 				}
 			});
@@ -446,12 +454,22 @@ index.atualizarHeroi = function() {
 			$heroi.attr('src', 'web/img/rip.png');
 			var classe = $heroi.attr('classe');
 			
+			var num = $heroi.attr('id').replace(/[^0-9]/g,'');
+			var $botao = $("#ataque" + num);
+			
+			$botao.attr('disabled', 'disabled');
+			$botao.removeClass('btn btn-danger');
+			$botao.addClass('btn btn-default');
+			
+			
 			if(($.inArray(classe, index.gameOver)) === -1) {
 				index.gameOver.push(classe);
 			}
 			
 			if(index.gameOver.length === 3) {
 				index.acabou();
+				index.gameOver = [];
+				return;
 			}
 		}
 	});
@@ -468,7 +486,7 @@ index.heroiSofreDano = function($heroi) {
 	
 	setTimeout( function() {
 		index.imagemHeroi($heroi);
-	}, 1800);
+	}, 600);
 }
 
 index.siga = function(ponto, cssClasse) {
@@ -509,6 +527,7 @@ index.getProtagonista = function(obj) {
 index.acabou = function() {
 	alert("Game Over");
 	index.sair(true);
+	return;
 }
 
 index.escreverLog = function(msg) {

@@ -1,8 +1,6 @@
 package com.dat.factory;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,6 +8,7 @@ import com.dat.enums.ClassePersonagem;
 import com.dat.enums.Dado;
 import com.dat.enums.EventosDoJogo;
 import com.dat.enums.Habilidade;
+import com.dat.enums.Status;
 import com.dat.model.Grupo;
 import com.dat.model.Monstro;
 import com.dat.model.Personagem;
@@ -30,7 +29,7 @@ public class EventoDoJogoManager {
 			return jogoService.montarGrupo(req);
 
 		case ENCERRAR:
-			jogoService.grupo = null;
+			jogoService.grupo = new HashMap<String, Grupo>();
 			return "{\"status\": \"Game Over\"}";
 
 		case EVENTO:
@@ -49,11 +48,51 @@ public class EventoDoJogoManager {
 
 		case INICIATIVA:
 			return rolarIniciativa(req.get("player")[0], jogoService);
+		
+		case ATACAR:
+			return tratarAtaque(req, jogoService);
 
 		default:
 			throw new IllegalArgumentException(evento
 					+ ". Esse evento não foi reconhecido!");
 		}
+	}
+
+	private String tratarAtaque(Map<String, String[]> req, JogoService jogoService) {
+		Monstro monstro = jogoService.monstro.get(req.get("player")[0]);
+		
+		ClassePersonagem classe = ClassePersonagem.valueOf(req.get("classe")[0].toUpperCase());
+		Protagonista protagonista = jogoService.getProtagonista(classe, req.get("player")[0]);
+		
+		String dado = protagonista.getAtaque();
+		Integer dano = protagonista.atacar();
+		monstro.sofrerDano(dano);
+		
+		String retorno = "";
+		
+		if(monstro.getStatus().equals(Status.MORTO)) {
+			retorno = "[ {\"dado\": \"" + dado + "\""
+					+ ", \"dano\": " + dano + ""
+					+ ", \"classe\": \"" + classe.toString() + "\"}"
+					+ ", " + monstro.toString()
+					+ "]";
+		} else {
+			String dadoMonstro = monstro.getAtaque();
+			Integer danoMonstro = monstro.atacar();
+			protagonista.sofrerDano(danoMonstro);
+			
+			retorno = "[ {\"dado\": \"" + dado + "\""
+					+ ", \"dano\": " + dano + ""
+					+ ", \"classe\": \"" + classe.toString() + "\"}"
+					+ ", " + monstro.toString()
+					+ ", {\"dadoMonstro\": \"" + dadoMonstro + "\""
+					+ ", \"danoMonstro\": " + danoMonstro + "}"
+					+ "," + jogoService.grupo.get(req.get("player")[0])
+					+ "]";
+		}
+		
+		System.out.println(retorno);
+		return retorno;
 	}
 
 	private String rolarIniciativa(String player, JogoService jogoService) {
@@ -72,15 +111,15 @@ public class EventoDoJogoManager {
 					protagonista);
 		}
 
-		json.append("{");
+		json.append("[");
 		int i = 0;
 		
 		for (Map.Entry<Integer, Personagem> entry : ordem.entrySet()) {
 			Integer key = entry.getKey();
 			Personagem value = entry.getValue();
 
-			json.append("\"" + value.getNome() + "\":");
-			json.append("\"" + key + "\"");
+			json.append("{\"" + value.getNome() + "\":");
+			json.append("\"" + key + "\"}");
 			
 			if(i < (ordem.size() - 1)) {
 				json.append(",");
@@ -88,7 +127,7 @@ public class EventoDoJogoManager {
 			}
 		}
 		
-		json.append("}");
+		json.append("]");
 		
 		System.out.println(json);
 

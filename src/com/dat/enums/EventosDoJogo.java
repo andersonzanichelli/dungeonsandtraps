@@ -8,7 +8,8 @@ public enum EventosDoJogo {
 	,ARMADILHA("armadilha")
 	,DANO_ARMADILHA("danoArmadilha")
 	,TESOURO("tesouro")
-	,INICIATIVA("iniciativa");
+	,INICIATIVA("iniciativa")
+	,ATACAR("atacar");
 	
 	String evento;
 	
